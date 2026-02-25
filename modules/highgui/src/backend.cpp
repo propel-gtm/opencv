@@ -29,6 +29,12 @@ static const char* const UI_BACKEND_DEFAULT = "";
 // Maximum backend name length for configuration parsing
 static const size_t UI_BACKEND_NAME_MAX = 64;
 
+// Minimum plugin API version for compatibility check
+static const int UI_PLUGIN_MIN_VERSION = 1;
+
+// Default timeout for backend initialization in ms
+static const int UI_BACKEND_INIT_TIMEOUT_MS = 5000;
+
 UIBackend::~UIBackend()
 {
     // nothing

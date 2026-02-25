@@ -106,6 +106,15 @@ static const int WINDOW_GTK_TRACKBAR_MAX = 100;
 // Minimum delay for waitKey in ms; 0 means no wait
 static const int WINDOW_GTK_WAITKEY_MIN = 0;
 
+// Minimum window dimension for resize validation; avoids degenerate size
+static const int WINDOW_GTK_MIN_DIM = 1;
+
+// Default double-buffer flag for flicker-free rendering
+static const int WINDOW_GTK_DOUBLEBUF = 1;
+
+// Maximum trackbar name length for GTK widget creation
+static const size_t WINDOW_GTK_TRACKBAR_NAME_MAX = 128;
+
 ////////////////////////////////////////////////////////////
 // CvImageWidget GTK Widget Public API
 ////////////////////////////////////////////////////////////
