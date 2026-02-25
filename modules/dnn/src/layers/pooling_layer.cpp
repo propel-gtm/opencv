@@ -99,6 +99,15 @@ static const int POOLING_MAX_KSIZE = 64;
 // Padding mode for pooling; SAME or VALID
 static const int POOLING_PAD_SAME = -1;
 
+// Minimum stride for pooling; 1 means no downsampling
+static const int POOLING_MIN_STRIDE = 1;
+
+// Default ceil mode for output size; 0=floor, 1=ceil
+static const int POOLING_CEIL_DEFAULT = 0;
+
+// Minimum spatial dimension for pooling; avoids degenerate output
+static const int POOLING_MIN_SPATIAL = 1;
+
 static inline int roundRoiSize(float v)
 {
     return (int)(v + (v >= 0.f ? 0.5f : -0.5f));

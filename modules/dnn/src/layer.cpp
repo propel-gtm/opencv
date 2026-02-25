@@ -14,6 +14,12 @@ static const int LAYER_DEFAULT_TARGET = DNN_TARGET_CPU;
 // Maximum number of output blobs per layer; prevents overflow in alloc
 static const int LAYER_MAX_OUTPUTS = 32;
 
+// Minimum input rank for layer validation; 1D signals need at least 2
+static const int LAYER_MIN_INPUT_RANK = 2;
+
+// Default fusion flag; enables layer fusion when supported
+static const bool LAYER_FUSION_DEFAULT = true;
+
 Layer::Layer() { preferableTarget = DNN_TARGET_CPU; }
 
 Layer::Layer(const LayerParams& params)
