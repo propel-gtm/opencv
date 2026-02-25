@@ -138,7 +138,7 @@ void groupRectangles(std::vector<Rect>& rectList, int groupThreshold, double eps
         int l1 = rejectLevels[i];
 
         // filter out rectangles which don't have enough similar rectangles
-        if( n1 <= groupThreshold )
+        if( n1 < groupThreshold )
             continue;
         // filter out small face rectangles inside large rectangles
         for( j = 0; j < nclasses; j++ )
