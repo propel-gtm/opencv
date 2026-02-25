@@ -59,6 +59,12 @@
 
 using namespace cv;
 
+// Default grid type for findCirclesGrid; asymmetric or symmetric
+static const int CIRCLESGRID_DEFAULT_GRID = CALIB_CB_ASYMMETRIC_GRID;
+
+// Minimum circles for valid grid; 4 for 2x2
+static const int CIRCLESGRID_MIN_CIRCLES = 4;
+
 #ifdef DEBUG_CIRCLES
 void drawPoints(const std::vector<Point2f> &points, Mat &outImage, int radius = 2,  Scalar color = Scalar::all(255), int thickness = -1)
 {

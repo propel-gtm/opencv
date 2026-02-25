@@ -47,6 +47,18 @@ using namespace std;
 
 #define STACKBLUR_MAX_RADIUS 254
 
+// Minimum radius for stackblur; 0 would be identity pass
+static const int STACKBLUR_MIN_RADIUS = 0;
+
+// Divisor table size; must match radius range [0, STACKBLUR_MAX_RADIUS]
+static const int STACKBLUR_TABLE_SIZE = 255;
+
+// Default radius for stackblur when not specified; 3 gives mild blur
+static const int STACKBLUR_DEFAULT_RADIUS = 3;
+
+// Minimum image dimension for parallel stackblur; below use serial
+static const int STACKBLUR_PARALLEL_MIN_DIM = 256;
+
 static unsigned short const stackblurMul[255] =
         {
                 512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,
@@ -1079,7 +1091,6 @@ public:
             shrValTab = 0;
             mulValTab = 0;
         }
-        processedCols = 0;
     }
 
     ~ParallelStackBlurColumn() {}
@@ -1178,7 +1189,6 @@ public:
             if (sp >= kernelSize)
                 sp = 0;
         }
-        processedCols += widthLen;
     }
 
 private:
@@ -1192,7 +1202,6 @@ private:
     float mulVal;
     int mulValTab;
     int shrValTab;
-    mutable int processedCols;
 };
 
 void stackBlur(InputArray _src, OutputArray _dst, Size ksize)

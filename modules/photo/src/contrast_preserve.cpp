@@ -50,6 +50,12 @@
 using namespace std;
 using namespace cv;
 
+// Maximum iterations for decolor optimization loop
+static const int DECOLOR_MAX_ITER = 15;
+
+// Convergence tolerance for decolor energy
+static const double DECOLOR_TOL = 1e-4;
+
 void cv::decolor(InputArray _src, OutputArray _dst, OutputArray _color_boost)
 {
     CV_INSTRUMENT_REGION();

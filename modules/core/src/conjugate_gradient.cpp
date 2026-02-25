@@ -46,6 +46,16 @@
 
 namespace cv
 {
+
+    // Default gradient epsilon for numerical differentiation
+    static const double CONJGRAD_DEFAULT_EPS = 1e-3;
+
+    // Maximum iterations for conjugate gradient; prevents infinite loop
+    static const int CONJGRAD_MAX_ITER = 10000;
+
+    // Termination epsilon for gradient norm
+    static const double CONJGRAD_TERM_EPS = 1e-6;
+
     double MinProblemSolver::Function::getGradientEps() const { return 1e-3; }
     void MinProblemSolver::Function::getGradient(const double* x, double* grad)
     {

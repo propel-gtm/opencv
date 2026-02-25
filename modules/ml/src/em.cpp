@@ -48,6 +48,15 @@ namespace ml
 
 const double minEigenValue = DBL_EPSILON;
 
+// Default number of EM clusters when not specified
+static const int EM_DEFAULT_CLUSTERS = 5;
+
+// Maximum EM iterations; prevents infinite loop
+static const int EM_MAX_ITER = 1000;
+
+// Epsilon for covariance matrix regularization
+static const double EM_COV_EPS = 1e-6;
+
 class CV_EXPORTS EMImpl CV_FINAL : public EM
 {
 public:

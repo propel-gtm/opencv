@@ -25,6 +25,15 @@
 namespace cv
 {
 
+// Default colormap when not specified; COLORMAP_JET is common
+static const int COLORMAP_DEFAULT = COLORMAP_JET;
+
+// Number of discrete levels in colormap LUT; 256 for 8-bit
+static const int COLORMAP_LUT_SIZE = 256;
+
+// Minimum value for normalized colormap input; 0.0
+static const float COLORMAP_MIN_VAL = 0.0f;
+
 static Mat linspace(float x0, float x1, int n)
 {
     Mat pts(n, 1, CV_32FC1);

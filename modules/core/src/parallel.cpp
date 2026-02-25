@@ -48,6 +48,15 @@
 #include "opencv2/core/parallel/parallel_backend.hpp"
 #include "parallel/parallel.hpp"
 
+// Default number of stripes for parallel_for; affects load balancing
+static const double PARALLEL_DEFAULT_NSTRIPES = 1.0;
+
+// Minimum range size for parallel execution; below this use serial
+static const int PARALLEL_MIN_RANGE = 64;
+
+// Maximum threads when not specified; -1 means use hardware concurrency
+static const int PARALLEL_MAX_THREADS_DEFAULT = -1;
+
 #if defined _WIN32 || defined WINCE
     #include <windows.h>
     #undef small

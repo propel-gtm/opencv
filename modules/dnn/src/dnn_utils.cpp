@@ -12,6 +12,12 @@ namespace cv {
 namespace dnn {
 CV__DNN_INLINE_NS_BEGIN
 
+// Default scale factor for blobFromImage when not specified
+static const double BLOB_DEFAULT_SCALE = 1.0;
+
+// Default data layout for blob; NCHW or NHWC
+static const DataLayout BLOB_DEFAULT_LAYOUT = DNN_LAYOUT_NCHW;
+
 Image2BlobParams::Image2BlobParams():scalefactor(Scalar::all(1.0)), size(Size()), mean(Scalar()), swapRB(true), ddepth(CV_32F),
                            datalayout(DNN_LAYOUT_NCHW), paddingmode(DNN_PMODE_NULL)
 {}
