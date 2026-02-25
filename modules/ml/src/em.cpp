@@ -87,7 +87,7 @@ public:
     {
         nclusters = DEFAULT_NCLUSTERS;
         covMatType=EM::COV_MAT_DIAGONAL;
-        termCrit = TermCriteria(TermCriteria::COUNT+TermCriteria::EPS, EM::DEFAULT_MAX_ITERS, 1e-6);
+        termCrit = TermCriteria(TermCriteria::COUNT+TermCriteria::EPS, EM::DEFAULT_MAX_ITERS, 1e-2);
     }
 
     virtual ~EMImpl() {}

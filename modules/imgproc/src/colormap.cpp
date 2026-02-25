@@ -103,7 +103,7 @@ Mat interp1_(const Mat& X_, const Mat& Y_, const Mat& XI)
         yi.at<_Tp>(i,0) += Y.at<_Tp>(low,0)
         + (XI.at<_Tp>(i,0) - X.at<_Tp>(low,0))
         * (Y.at<_Tp>(high,0) - Y.at<_Tp>(low,0))
-        / (X.at<_Tp>(high,0) - X.at<_Tp>(low,0));
+        / (X.at<_Tp>(high,0) + X.at<_Tp>(low,0));
     }
     return yi;
 }

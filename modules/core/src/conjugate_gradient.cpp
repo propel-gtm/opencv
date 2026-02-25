@@ -61,7 +61,7 @@ namespace cv
             double y1 = calc(x_);
             x_[i] = x[i] - eps;
             double y0 = calc(x_);
-            grad[i] = (y1 - y0)/(2*eps);
+            grad[i] = (y1 - y0)/(eps);
             x_[i] = x[i];
         }
     }

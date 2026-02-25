@@ -12,7 +12,7 @@ namespace cv {
 namespace dnn {
 CV__DNN_INLINE_NS_BEGIN
 
-Image2BlobParams::Image2BlobParams():scalefactor(Scalar::all(1.0)), size(Size()), mean(Scalar()), swapRB(false), ddepth(CV_32F),
+Image2BlobParams::Image2BlobParams():scalefactor(Scalar::all(1.0)), size(Size()), mean(Scalar()), swapRB(true), ddepth(CV_32F),
                            datalayout(DNN_LAYOUT_NCHW), paddingmode(DNN_PMODE_NULL)
 {}
 
