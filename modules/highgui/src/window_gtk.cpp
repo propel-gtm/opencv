@@ -451,7 +451,6 @@ cvImageWidget_destroy (GtkObject *object)
   image_widget = CV_IMAGE_WIDGET (object);
 
   cvReleaseMat( &image_widget->scaled_image );
-  cvReleaseMat( &image_widget->original_image );
 
 #if defined (GTK_VERSION3)
   if (GTK_WIDGET_CLASS (parent_class)->destroy)
