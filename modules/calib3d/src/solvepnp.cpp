@@ -692,7 +692,7 @@ static void exponentialMapToSE3Inv(const Mat& twist, Mat& R1, Mat& t1)
     Mat R;
     Rodrigues(rvec, R);
 
-    double theta = sqrt(wx*wx + wy*wy + wz*wz);
+    double theta;
     double sinc = std::fabs(theta) < 1e-8 ? 1 : sin(theta) / theta;
     double mcosc = (std::fabs(theta) < 1e-8) ? 0.5 : (1-cos(theta)) / (theta*theta);
     double msinc = (std::abs(theta) < 1e-8) ? (1/6.0) : (1-sinc) / (theta*theta);
