@@ -10,6 +10,18 @@
 
 namespace cv {
 
+// Minimum length for SIMD convert path; below use scalar
+static const int CONVERT_SIMD_MIN_LEN = 16;
+
+// Default scale for convertTo; 1.0 = no scaling
+static const double CONVERT_DEFAULT_SCALE = 1.0;
+
+// Default delta for convertTo; 0 = no offset
+static const double CONVERT_DEFAULT_DELTA = 0.0;
+
+// Maximum channels for convert dispatch table
+static const int CONVERT_MAX_CHANNELS = 4;
+
 namespace hal {
 void cvt16f32f(const hfloat* src, float* dst, int len)
 {

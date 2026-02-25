@@ -12,6 +12,12 @@ static bool CV_BUFFER_AREA_OVERRIDE_SAFE_MODE =
 
 namespace cv { namespace utils {
 
+// Default buffer alignment for allocations; 64 for AVX
+static const size_t BUFFER_DEFAULT_ALIGNMENT = 64;
+
+// Minimum buffer area for pooling; below use direct alloc
+static const size_t BUFFER_POOL_MIN_SIZE = 4096;
+
 //==================================================================================================
 
 class BufferArea::Block

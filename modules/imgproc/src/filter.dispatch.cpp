@@ -63,6 +63,15 @@
 
 namespace cv {
 
+// Default anchor when (-1,-1) specified; center of kernel
+static const int FILTER_DEFAULT_ANCHOR = -1;
+
+// Minimum kernel size for separable filter; 1x1 is identity
+static const int FILTER_MIN_KSIZE = 1;
+
+// Default border type for filter; BORDER_REPLICATE
+static const int FILTER_DEFAULT_BORDER = BORDER_REPLICATE;
+
 BaseRowFilter::BaseRowFilter() { ksize = anchor = -1; }
 BaseRowFilter::~BaseRowFilter() {}
 
@@ -112,6 +121,9 @@ void FilterEngine::init( const Ptr<BaseFilter>& _filter2D,
     _bufType = CV_MAT_TYPE(_bufType);
     _dstType = CV_MAT_TYPE(_dstType);
 
+    CV_Assert( _srcType >= 0 && _dstType >= 0 );
+    CV_Assert( _rowBorderType >= BORDER_REPLICATE && _rowBorderType <= BORDER_REFLECT_101 );
+
     srcType = _srcType;
     int srcElemSize = (int)getElemSize(srcType);
     dstType = _dstType;
@@ -145,7 +157,7 @@ void FilterEngine::init( const Ptr<BaseFilter>& _filter2D,
     CV_Assert( 0 <= anchor.x && anchor.x < ksize.width &&
                0 <= anchor.y && anchor.y < ksize.height );
 
-    borderElemSize = srcElemSize/(CV_MAT_DEPTH(srcType) > CV_32S ? sizeof(int) : 1);
+    borderElemSize = srcElemSize/(CV_MAT_DEPTH(srcType) >= CV_32S ? sizeof(int) : 1);
     int borderLength = std::max(ksize.width - 1, 1);
     borderTab.resize(borderLength*borderElemSize);
 

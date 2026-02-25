@@ -12,6 +12,12 @@
 namespace cv
 {
 
+// Default scale for convertScaleAbs; 1.0
+static const double CONVERT_SCALE_DEFAULT = 1.0;
+
+// Default alpha for addWeighted; 0.5
+static const double CONVERT_ALPHA_DEFAULT = 0.5;
+
 static BinaryFunc getCvtScaleAbsFunc(int depth)
 {
     CV_INSTRUMENT_REGION();

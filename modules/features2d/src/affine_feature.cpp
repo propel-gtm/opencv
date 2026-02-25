@@ -49,6 +49,18 @@
 #include <iostream>
 namespace cv {
 
+// Default affine adaptation iterations
+static const int AFFINE_FEATURE_DEFAULT_ITERS = 5;
+
+// Default convergence threshold for affine adaptation
+static const float AFFINE_FEATURE_EPS = 1e-6f;
+
+// Default patch size for affine feature extraction
+static const int AFFINE_FEATURE_PATCH_SIZE = 31;
+
+// Maximum pyramid levels for affine adaptation
+static const int AFFINE_FEATURE_MAX_LEVELS = 4;
+
 class AffineFeature_Impl CV_FINAL : public AffineFeature
 {
 public:

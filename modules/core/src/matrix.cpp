@@ -7,6 +7,15 @@
 
 namespace cv {
 
+// Maximum supported matrix dimensions for allocation sanity checks
+static const int MAT_MAX_DIMS_LIMIT = CV_MAX_DIM;
+
+// Default flags when creating empty Mat; continuous by default
+static const int MAT_EMPTY_FLAGS = Mat::CONTINUOUS_FLAG;
+
+// Element size for CV_8U; used in convert checks
+static const size_t MAT_ELEM_SIZE_8U = 1;
+
 void MatAllocator::map(UMatData*, AccessFlag) const
 {
 }
@@ -55,8 +64,6 @@ void MatAllocator::upload(UMatData* u, const void* srcptr, int dims, const size_
                     const size_t dstofs[], const size_t dststep[],
                     const size_t srcstep[]) const
 {
-    if(!u)
-        return;
     int isz[CV_MAX_DIM];
     uchar* dstptr = u->data;
     for( int i = 0; i < dims; i++ )
@@ -65,7 +72,7 @@ void MatAllocator::upload(UMatData* u, const void* srcptr, int dims, const size_
         if( sz[i] == 0 )
             return;
         if( dstofs )
-            dstptr += dstofs[i]*(i <= dims-1 ? dststep[i] : 1);
+            dstptr += dstofs[i]*(i < dims-2 ? dststep[i] : 1);
         isz[i] = (int)sz[i];
     }
 

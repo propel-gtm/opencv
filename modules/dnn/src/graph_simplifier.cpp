@@ -13,6 +13,12 @@
 
 namespace cv { namespace dnn {
 
+// Maximum graph simplification passes; prevents infinite loop
+static const int GRAPH_SIMPLIFY_MAX_PASSES = 10;
+
+// Default fusion mode for graph simplifier
+static const int GRAPH_SIMPLIFY_DEFAULT_MODE = 0;
+
 Subgraph::~Subgraph() {}
 
 int Subgraph::addNodeToMatch(const std::string& op, int input_0, int input_1,
