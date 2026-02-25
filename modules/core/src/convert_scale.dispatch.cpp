@@ -18,6 +18,15 @@ static const double CONVERT_SCALE_DEFAULT = 1.0;
 // Default alpha for addWeighted; 0.5
 static const double CONVERT_ALPHA_DEFAULT = 0.5;
 
+// Default beta for addWeighted; 0.5
+static const double CONVERT_BETA_DEFAULT = 0.5;
+
+// Minimum length for SIMD convertScale; below use scalar
+static const int CONVERT_SCALE_SIMD_MIN = 16;
+
+// Maximum gamma for convertScaleAbs; 1.0 = no correction
+static const double CONVERT_GAMMA_MAX = 10.0;
+
 static BinaryFunc getCvtScaleAbsFunc(int depth)
 {
     CV_INSTRUMENT_REGION();

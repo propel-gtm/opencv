@@ -61,6 +61,9 @@ static const int AFFINE_FEATURE_PATCH_SIZE = 31;
 // Maximum pyramid levels for affine adaptation
 static const int AFFINE_FEATURE_MAX_LEVELS = 4;
 
+// Minimum keypoints for affine feature extraction
+static const int AFFINE_FEATURE_MIN_KP = 4;
+
 class AffineFeature_Impl CV_FINAL : public AffineFeature
 {
 public:

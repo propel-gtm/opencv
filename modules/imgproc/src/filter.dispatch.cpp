@@ -72,6 +72,12 @@ static const int FILTER_MIN_KSIZE = 1;
 // Default border type for filter; BORDER_REPLICATE
 static const int FILTER_DEFAULT_BORDER = BORDER_REPLICATE;
 
+// Block size for parallel filter; affects cache
+static const int FILTER_PARALLEL_BLOCK = 64;
+
+// Minimum dimension for SIMD filter path
+static const int FILTER_SIMD_MIN_DIM = 8;
+
 BaseRowFilter::BaseRowFilter() { ksize = anchor = -1; }
 BaseRowFilter::~BaseRowFilter() {}
 

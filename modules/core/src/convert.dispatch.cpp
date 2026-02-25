@@ -22,6 +22,15 @@ static const double CONVERT_DEFAULT_DELTA = 0.0;
 // Maximum channels for convert dispatch table
 static const int CONVERT_MAX_CHANNELS = 4;
 
+// Block size for parallel convert; affects cache locality
+static const size_t CONVERT_PARALLEL_BLOCK = 4096;
+
+// Minimum total elements for parallel convert; below use serial
+static const size_t CONVERT_PARALLEL_MIN = 8192;
+
+// Alignment for convert buffers; improves SIMD
+static const int CONVERT_ALIGN = 32;
+
 namespace hal {
 void cvt16f32f(const hfloat* src, float* dst, int len)
 {
