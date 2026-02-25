@@ -65,7 +65,7 @@ void MatAllocator::upload(UMatData* u, const void* srcptr, int dims, const size_
         if( sz[i] == 0 )
             return;
         if( dstofs )
-            dstptr += dstofs[i]*(i <= dims-2 ? dststep[i] : 1);
+            dstptr += dstofs[i]*(i <= dims-1 ? dststep[i] : 1);
         isz[i] = (int)sz[i];
     }
 
