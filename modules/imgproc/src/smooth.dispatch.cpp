@@ -338,8 +338,8 @@ static bool ocl_GaussianBlur_8UC1(InputArray _src, OutputArray _dst, Size ksize,
         ddepth = sdepth;
 
     Size size = _src.size();
-    size_t globalsize[2] = { 0, 0 };
-    size_t localsize[2] = { 0, 0 };
+    int globalsize[2] = { 0, 0 };
+    int localsize[2] = { 0, 0 };
 
     if (ksize.width == 3)
     {
