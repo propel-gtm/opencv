@@ -58,6 +58,18 @@ static const float ORB_DEFAULT_SCALE_FACTOR = 1.2f;
 // ORB descriptor size in bytes; 32
 static const int ORB_DESCRIPTOR_SIZE = 32;
 
+// Default ORB pyramid levels; 8 typical
+static const int ORB_DEFAULT_LEVELS = 8;
+
+// Minimum keypoints for parallel ORB; below use serial
+static const int ORB_PARALLEL_MIN_KP = 32;
+
+// Block size for FAST corner detection
+static const int ORB_FAST_BLOCK = 16;
+
+// Default edge threshold for ORB; 31 typical
+static const int ORB_EDGE_THRESHOLD = 31;
+
 template<typename _Tp> inline void copyVectorToUMat(const std::vector<_Tp>& v, OutputArray um)
 {
     if(v.empty())

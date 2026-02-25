@@ -69,6 +69,24 @@ static const float BRISK_DMAX = 5.85f;
 // dMin for BRISK sampling pattern; inner ring
 static const float BRISK_DMIN = 8.2f;
 
+// Minimum keypoints for parallel BRISK; below use serial
+static const int BRISK_PARALLEL_MIN_KP = 64;
+
+// Block size for descriptor computation; affects cache
+static const int BRISK_DESC_BLOCK = 16;
+
+// Maximum pattern radius for sampling; prevents overflow
+static const float BRISK_MAX_PATTERN_RADIUS = 48.0f;
+
+// Default rotation invariance; true for BRISK
+static const bool BRISK_ROTATION_INVARIANT = true;
+
+// Minimum image dimension for BRISK; 32 typical
+static const int BRISK_MIN_IMAGE_DIM = 32;
+
+// Default sigma for scale space; 1.0
+static const float BRISK_DEFAULT_SIGMA = 1.0f;
+
 class BRISK_Impl CV_FINAL : public BRISK
 {
 public:
