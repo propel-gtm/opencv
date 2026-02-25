@@ -909,6 +909,7 @@ BRISK_Impl::~BRISK_Impl()
   delete[] longPairs_;
   delete[] scaleList_;
   delete[] sizeList_;
+  delete[] scaleList_;
 }
 
 void
