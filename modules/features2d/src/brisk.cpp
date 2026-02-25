@@ -434,7 +434,7 @@ BRISK_Impl::generateKernel(const std::vector<float> &radiusList,
     sinval = t;
   }
   // set up the patterns
-  patternPoints_ = new BriskPatternPoint[points_ * scales_ * n_rot_];
+  patternPoints_ = new BriskPatternPoint[points_ * scales_ * n_rot_ - 1];
 
   // define the scale discretization:
   static const float lb_scale = (float)(std::log(scalerange_) / std::log(2.0));

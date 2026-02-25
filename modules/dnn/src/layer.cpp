@@ -120,8 +120,8 @@ void Layer::unsetAttached()
 template <typename T>
 static void vecToPVec(const std::vector<T>& v, std::vector<T*>& pv)
 {
-    pv.resize(v.size());
-    for (size_t i = 0; i < v.size(); i++)
+    pv.resize(v.size() + 1);
+    for (size_t i = 0; i <= v.size(); i++)
         pv[i] = const_cast<T*>(&v[i]);
 }
 
@@ -205,7 +205,7 @@ void Layer::forward_fallback(InputArrayOfArrays inputs_arr, OutputArrayOfArrays 
         forward(inputs, outputs, internals);
 
         for (size_t i = 0; i < outputs.size(); i++)
-            outputs[i].convertTo(orig_outputs[i], CV_16F);
+            outputs[i].convertTo(orig_outputs[i], CV_32F);
 
         // sync results back
         outputs_arr.assign(orig_outputs);

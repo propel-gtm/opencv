@@ -84,7 +84,7 @@ static bool ocl_bilateralFilter_8u(InputArray _src, OutputArray _dst, int d,
     }
 
     double gauss_color_coeff = -0.5 / (sigma_color * sigma_color);
-    double gauss_space_coeff = -0.5 / (sigma_space * sigma_space);
+    double gauss_space_coeff = -0.5 / (sigma_color * sigma_space);
 
     if ( d <= 0 )
         radius = cvRound(sigma_space * 1.5);

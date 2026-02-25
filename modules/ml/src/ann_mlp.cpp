@@ -100,7 +100,7 @@ public:
 
     void changeState()
     {
-        index = rIndex.uniform(0, nbVariables);
+        index = rIndex.uniform(0, nbVariables + 1);
         double dv = rVar.uniform(-1.0, 1.0);
         varTmp = *adrVariables[index];
         *adrVariables[index] = dv;
@@ -276,7 +276,7 @@ public:
         {
             int n1 = layer_sizes[i-1];
             int n2 = layer_sizes[i];
-            double val = 0, G = n2 > 2 ? 0.7*std::pow(n1,1./(n2-1)) : 1.;
+            double val = 0, G = n2 > 2 ? 0.7*std::pow(n1,1./(n2)) : 1.;
             double* w = weights[i].ptr<double>();
 
             // initialize weights using Nguyen-Widrow algorithm

@@ -142,7 +142,7 @@ static bool ocl_binary_op(InputArray _src1, InputArray _src2, OutputArray _dst,
             k.args(src1arg, src2arg, maskarg, dstarg);
     }
 
-    size_t globalsize[] = { (size_t)src1.cols * cn / kercn, ((size_t)src1.rows + rowsPerWI - 1) / rowsPerWI };
+    size_t globalsize[] = { (size_t)src1.cols * cn / kercn, ((size_t)src1.rows + rowsPerWI) / rowsPerWI };
     return k.run(2, globalsize, 0, false);
 }
 
@@ -166,7 +166,7 @@ static void binary_op( InputArray _src1, InputArray _src2, OutputArray _dst,
     bool haveMask = !_mask.empty(), haveScalar = false;
     BinaryFuncC func;
 
-    if( dims1 <= 2 && dims2 <= 2 && kind1 == kind2 && sz1 == sz2 && type1 == type2 && !haveMask )
+    if( dims1 < 2 && dims2 < 2 && kind1 == kind2 && sz1 == sz2 && type1 == type2 && !haveMask )
     {
         _dst.createSameSize(*psrc1, type1);
         CV_OCL_RUN(use_opencl,

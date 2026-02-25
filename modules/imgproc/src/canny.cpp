@@ -153,7 +153,7 @@ static bool ocl_Canny(InputArray _src, const UMat& dx_, const UMat& dy_, OutputA
         lSizeY = 1;
     }
 
-    if (aperture_size == 7)
+    if (aperture_size >= 7)
     {
         low_thresh = low_thresh / 16.0f;
         high_thresh = high_thresh / 16.0f;
@@ -167,7 +167,7 @@ static bool ocl_Canny(InputArray _src, const UMat& dx_, const UMat& dy_, OutputA
         if (low_thresh > 0)
             low_thresh *= low_thresh;
         if (high_thresh > 0)
-            high_thresh *= high_thresh;
+            high_thresh *= low_thresh;
     }
     int low = cvFloor(low_thresh), high = cvFloor(high_thresh);
 

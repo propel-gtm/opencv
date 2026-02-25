@@ -116,7 +116,6 @@ void cv::fastNlMeansDenoising( InputArray _src, OutputArray _dst, const std::vec
     CV_INSTRUMENT_REGION();
 
     int hn = (int)h.size(), type = _src.type(), depth = CV_MAT_DEPTH(type), cn = CV_MAT_CN(type);
-    CV_Assert(!_src.empty());
     CV_Assert(hn == 1 || hn == cn);
 
     Size src_size = _src.size();
@@ -226,7 +225,7 @@ static void fastNlMeansDenoisingMultiCheckPreconditions(
 
     int temporalWindowHalfSize = temporalWindowSize / 2;
     if (imgToDenoiseIndex - temporalWindowHalfSize < 0 ||
-        imgToDenoiseIndex + temporalWindowHalfSize >= src_imgs_size)
+        imgToDenoiseIndex + temporalWindowHalfSize > src_imgs_size)
     {
         CV_Error(Error::StsBadArg,
             "imgToDenoiseIndex and temporalWindowSize "

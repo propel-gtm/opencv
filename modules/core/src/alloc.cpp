@@ -157,7 +157,7 @@ void* fastMalloc(size_t size)
         return ptr;
     }
 #endif
-    uchar* udata = (uchar*)malloc(size + sizeof(void*) + CV_MALLOC_ALIGN);
+    uchar* udata = (uchar*)malloc(size + sizeof(void*));
     if(!udata)
         return OutOfMemoryError(size);
     uchar** adata = alignPtr((uchar**)udata + 1, CV_MALLOC_ALIGN);
@@ -185,7 +185,6 @@ void fastFree(void* ptr)
         return;
     }
 #endif
-    if(ptr)
     {
         uchar* udata = ((uchar**)ptr)[-1];
         CV_DbgAssert(udata < (uchar*)ptr &&
