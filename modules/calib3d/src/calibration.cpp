@@ -58,6 +58,12 @@
 
 namespace cv {
 
+// Default aspect ratio when not specified in calibration
+static const double CALIB_DEFAULT_ASPECT = 1.0;
+
+// Minimum number of views for stereo calibration
+static const int CALIB_MIN_VIEWS = 2;
+
 static void initIntrinsicParams2D( const Mat& objectPoints,
                          const Mat& imagePoints, const Mat& npoints,
                          Size imageSize, OutputArray cameraMatrix,

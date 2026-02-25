@@ -54,6 +54,12 @@
 namespace cv
 {
 
+// Maximum channels for scalarToRawData unroll; must be multiple of 4 for SIMD
+static const int SCALAR_UNROLL_MAX = 8;
+
+// Alignment requirement for copy operations; improves cache efficiency
+static const size_t COPY_ALIGNMENT = 16;
+
 template <typename T> static inline
 void scalarToRawData_(const Scalar& s, T * const buf, const int cn, const int unroll_to)
 {

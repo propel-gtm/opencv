@@ -46,6 +46,12 @@
 
 namespace cv {
 
+// Default API preference when not specified; CAP_ANY tries backends in order
+static const int CAP_DEFAULT_API = 0;
+
+// Minimum frame index for seek operations; 0 is first frame
+static const int CAP_MIN_FRAME_IDX = 0;
+
 static bool param_VIDEOIO_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOIO_DEBUG", false);
 static bool param_VIDEOCAPTURE_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOCAPTURE_DEBUG", false);
 static bool param_VIDEOWRITER_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOWRITER_DEBUG", false);

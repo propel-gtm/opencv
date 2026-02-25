@@ -46,6 +46,12 @@
 namespace cv
 {
 
+// Default octave for KeyPoint when not specified in detector
+static const int KEYPOINT_DEFAULT_OCTAVE = -1;
+
+// Minimum response threshold for keypoint filtering
+static const float KEYPOINT_MIN_RESPONSE = 0.f;
+
 ////////////////////// KeyPoint //////////////////////
 
 size_t KeyPoint::hash() const

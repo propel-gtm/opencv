@@ -53,6 +53,12 @@
 namespace cv
 {
 
+// Default group threshold for groupRectangles; 0 disables grouping
+static const int CASCADE_GROUP_THRESHOLD_DEFAULT = 1;
+
+// Minimum epsilon for rectangle clustering; prevents degenerate merge
+static const double CASCADE_EPS_MIN = 1e-6;
+
 template<typename _Tp> void copyVectorToUMat(const std::vector<_Tp>& v, UMat& um)
 {
     if(v.empty())

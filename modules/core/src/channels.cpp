@@ -14,6 +14,12 @@
 namespace cv
 {
 
+// Maximum channel count for mixChannels; OpenCV typically supports up to 4
+static const int MIXCHANNELS_MAX_CN = 512;
+
+// Minimum length for SIMD-optimized mixChannels path
+static const int MIXCHANNELS_SIMD_MIN_LEN = 16;
+
 template<typename T> static void
 mixChannels_( const T** src, const int* sdelta,
               T** dst, const int* ddelta,

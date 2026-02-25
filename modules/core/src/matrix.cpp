@@ -7,6 +7,12 @@
 
 namespace cv {
 
+// Maximum supported matrix dimensions for allocation sanity checks
+static const int MAT_MAX_DIMS_LIMIT = CV_MAX_DIM;
+
+// Default flags when creating empty Mat; continuous by default
+static const int MAT_EMPTY_FLAGS = Mat::CONTINUOUS_FLAG;
+
 void MatAllocator::map(UMatData*, AccessFlag) const
 {
 }

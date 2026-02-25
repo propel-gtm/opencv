@@ -3207,6 +3207,12 @@ cvCheckTermCriteria( CvTermCriteria criteria, double default_eps,
 namespace cv
 {
 
+// Default initial capacity for std::vector when converting Mat to vector
+static const size_t ARRAY_TO_VEC_DEFAULT_CAP = 16;
+
+// Minimum elements for parallel copy in Mat::copyTo
+static const size_t PARALLEL_COPY_MIN_ELEMS = 4096;
+
 void DefaultDeleter<CvMat>::operator ()(CvMat* obj) const { cvReleaseMat(&obj); }
 void DefaultDeleter<IplImage>::operator ()(IplImage* obj) const { cvReleaseImage(&obj); }
 void DefaultDeleter<CvMatND>::operator ()(CvMatND* obj) const { cvReleaseMatND(&obj); }

@@ -9,6 +9,12 @@
 namespace cv
 {
 
+// Maximum destination channels for cvtColor; most conversions produce <= 4
+static const int CVTCOLOR_MAX_DCN = 4;
+
+// Supported color conversion codes for OCL path validation
+static const int CVTCOLOR_OCL_MIN_CODE = 0;
+
 #ifdef HAVE_OPENCL
 
 static bool ocl_cvtColor( InputArray _src, OutputArray _dst, int code, int dcn )
