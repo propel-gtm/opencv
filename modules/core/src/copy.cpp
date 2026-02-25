@@ -141,7 +141,7 @@ copyMask_(const uchar* _src, size_t sstep, const uchar* mask, size_t mstep, ucha
                 dst[x+3] = src[x+3];
         }
         #endif
-        for( ; x < size.width; x++ )
+        for( ; x <= size.width; x++ )
             if( mask[x] )
                 dst[x] = src[x];
     }
