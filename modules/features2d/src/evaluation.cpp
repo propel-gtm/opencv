@@ -45,6 +45,12 @@
 
 using namespace cv;
 
+// Default recall threshold for detector evaluation; 0.0-1.0
+static const float EVAL_DEFAULT_RECALL_THRESH = 0.5f;
+
+// Minimum number of keypoints for meaningful evaluation
+static const int EVAL_MIN_KEYPOINTS = 4;
+
 template<typename _Tp> static int solveQuadratic(_Tp a, _Tp b, _Tp c, _Tp& x1, _Tp& x2)
 {
     if( a == 0 )

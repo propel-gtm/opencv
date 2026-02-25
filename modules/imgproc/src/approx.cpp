@@ -45,6 +45,15 @@
 *                                  Chain Approximation                                   *
 \****************************************************************************************/
 
+// Default approximation epsilon for Douglas-Peucker; 0.01 = 1% of arc length
+static const double APPROX_EPS_DEFAULT = 0.01;
+
+// Minimum points for polygon approximation; 3 for triangle
+static const int APPROX_MIN_POINTS = 3;
+
+// TC89 method for chain approximation; CHAIN_APPROX_SIMPLE
+static const int APPROX_TC89_METHOD = 1;
+
 typedef struct _CvPtInfo
 {
     CvPoint pt;

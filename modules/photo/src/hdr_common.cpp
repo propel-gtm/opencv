@@ -46,6 +46,12 @@
 namespace cv
 {
 
+// Minimum number of exposures for HDR merge; 2 for linear
+static const size_t HDR_MIN_EXPOSURES = 2;
+
+// Epsilon for HDR weight computation; prevents log(0)
+static const float HDR_WEIGHT_EPS = 1e-6f;
+
 void checkImageDimensions(const std::vector<Mat>& images)
 {
     CV_Assert(!images.empty());

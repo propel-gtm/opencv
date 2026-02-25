@@ -11,6 +11,15 @@ namespace cv { namespace hal {
 *                     LU & Cholesky implementation for small matrices                    *
 \****************************************************************************************/
 
+// Epsilon for LU pivot; below this value matrix is singular
+static const float LU_EPS_FACTOR = 100.0f;
+
+// Maximum matrix size for direct LU; larger use iterative
+static const int LU_MAX_DIRECT_SIZE = 256;
+
+// Cholesky decomposition epsilon for positive definiteness
+static const double CHOLESKY_EPS = 1e-10;
+
 template<typename _Tp> static inline int
 LUImpl(_Tp* A, size_t astep, int m, _Tp* b, size_t bstep, int n, _Tp eps)
 {

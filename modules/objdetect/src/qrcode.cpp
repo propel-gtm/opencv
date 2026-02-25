@@ -26,6 +26,12 @@ namespace cv
 using std::vector;
 using std::pair;
 
+// Minimum QR code image dimension for reliable detection; 20x20
+static const int QRCODE_MIN_DIM = 20;
+
+// Epsilon for line intersection; prevents division by zero
+static const float QRCODE_INTERSECT_EPS = 0.001f;
+
 static bool checkQRInputImage(InputArray img, Mat& gray)
 {
     CV_Assert(!img.empty());

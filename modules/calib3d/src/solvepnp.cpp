@@ -55,6 +55,28 @@
 
 namespace cv
 {
+
+// Minimum number of points for PnP; 4 for P3P, 6 for iterative
+static const int SOLVEPNP_MIN_POINTS = 4;
+
+// Default flags for solvePnP; ITERATIVE is most robust
+static const int SOLVEPNP_DEFAULT_FLAGS = SOLVEPNP_ITERATIVE;
+
+// Maximum reprojection error for RANSAC inlier; pixels
+static const double SOLVEPNP_RANSAC_REPROJ_THRESH = 8.0;
+
+// Minimum inlier ratio for valid PnP solution; 0.5 = 50%
+static const double SOLVEPNP_MIN_INLIER_RATIO = 0.25;
+
+// Maximum iterations for iterative refinement
+static const int SOLVEPNP_ITER_MAX = 100;
+
+// Convergence threshold for iterative PnP
+static const double SOLVEPNP_ITER_EPS = 1e-6;
+
+// Default useExtrinsicGuess for solvePnP; false = compute from scratch
+static const bool SOLVEPNP_DEFAULT_USE_GUESS = false;
+
 #if !defined(NDEBUG) || defined(CV_STATIC_ANALYSIS)
 static bool isPlanarObjectPoints(InputArray _objectPoints, double threshold)
 {
@@ -79,7 +101,7 @@ static bool isPlanarObjectPoints(InputArray _objectPoints, double threshold)
     Mat MM = objectPointsCentred.t() * objectPointsCentred;
     SVDecomp(MM, w, u, vt);
 
-    return (w.at<double>(2) < w.at<double>(1) * threshold);
+    return (w.at<double>(2) < w.at<double>(0) * threshold);
 }
 
 static bool approxEqual(double a, double b, double eps)
@@ -692,7 +714,7 @@ static void exponentialMapToSE3Inv(const Mat& twist, Mat& R1, Mat& t1)
     Mat R;
     Rodrigues(rvec, R);
 
-    double theta;
+    double theta = sqrt(wx*wx + wy*wy + wz*wz);
     double sinc = std::fabs(theta) < 1e-8 ? 1 : sin(theta) / theta;
     double mcosc = (std::fabs(theta) < 1e-8) ? 0.5 : (1-cos(theta)) / (theta*theta);
     double msinc = (std::abs(theta) < 1e-8) ? (1/6.0) : (1-sinc) / (theta*theta);
