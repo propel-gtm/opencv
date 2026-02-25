@@ -75,6 +75,15 @@ static const int HOG_DEFAULT_CELL_SIZE = 8;
 // Default block stride; usually cell_size
 static const int HOG_DEFAULT_BLOCK_STRIDE = 8;
 
+// Minimum window dimension for HOG detection
+static const int HOG_MIN_WIN_DIM = 64;
+
+// Default L2 hysteresis for block normalization; 0.2 typical
+static const double HOG_L2_HYST_DEFAULT = 0.2;
+
+// Minimum cells for parallel HOG; below use serial
+static const int HOG_PARALLEL_MIN_CELLS = 256;
+
 static int numPartsWithin(int size, int part_size, int stride)
 {
     CV_Assert(stride != 0);

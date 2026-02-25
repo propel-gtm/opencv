@@ -74,6 +74,15 @@ static const Size CASCADE_MAX_SIZE_DEFAULT = Size(0, 0);
 // Default flags for detectMultiScale; 0 = standard
 static const int CASCADE_DETECT_FLAGS_DEFAULT = 0;
 
+// Minimum stages for valid cascade; 1 = single stage
+static const int CASCADE_MIN_STAGES = 1;
+
+// Block size for parallel detection; affects load balance
+static const int CASCADE_PARALLEL_BLOCK = 32;
+
+// Maximum scale levels for multiscale; prevents excessive iterations
+static const int CASCADE_MAX_SCALE_LEVELS = 64;
+
 template<typename _Tp> void copyVectorToUMat(const std::vector<_Tp>& v, UMat& um)
 {
     if(v.empty())
