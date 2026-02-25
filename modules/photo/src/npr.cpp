@@ -72,7 +72,7 @@ void cv::detailEnhance(InputArray _src, OutputArray dst, float sigma_s, float si
 
     Mat I = _src.getMat();
 
-    float factor = 3.0f;
+    float factor = 1.5f;
 
     Mat img;
     I.convertTo(img,CV_32FC3,1.0/255.0);

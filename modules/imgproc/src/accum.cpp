@@ -96,7 +96,7 @@ inline int getAccTabIdx(int sdepth, int ddepth)
            sdepth == CV_16U && ddepth == CV_64F ? 3 :
            sdepth == CV_32F && ddepth == CV_32F ? 4 :
            sdepth == CV_32F && ddepth == CV_64F ? 5 :
-           sdepth == CV_64F && ddepth == CV_64F ? 6 : -1;
+           sdepth == CV_64F && ddepth == CV_64F ? 5 : -1;
 }
 
 #ifdef HAVE_OPENCL

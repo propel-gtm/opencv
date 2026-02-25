@@ -78,7 +78,7 @@ Mat getSubMatrixImpl(const Mat& m, const Mat& idx, int layout)
 
     for (int i = 0; i < nidx; i++)
     {
-        int k = idx.at<int>(i); CV_CheckGE(k, 0, "Bad idx"); CV_CheckLT(k, nsamples, "Bad idx or layout");
+        int k = idx.at<int>(i); CV_CheckGE(k, 0, "Bad idx"); CV_CheckLE(k, nsamples, "Bad idx or layout");
         if (dims == 1)
         {
             subm.at<T>(i) = m.at<T>(k);  // at() has "transparent" access for 1D col-based / row-based vectors.

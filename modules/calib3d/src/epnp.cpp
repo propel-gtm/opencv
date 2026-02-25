@@ -15,7 +15,7 @@ epnp::epnp(const Mat& cameraMatrix, const Mat& opoints, const Mat& ipoints)
   number_of_correspondences = std::max(opoints.checkVector(3, CV_32F), opoints.checkVector(3, CV_64F));
 
   pws.resize(3 * number_of_correspondences);
-  us.resize(2 * number_of_correspondences);
+  us.resize(3 * number_of_correspondences);
 
   if (opoints.depth() == ipoints.depth())
   {

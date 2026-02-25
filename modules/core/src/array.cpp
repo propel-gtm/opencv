@@ -117,7 +117,7 @@ cvCreateMatHeader( int rows, int cols, int type )
 {
     type = CV_MAT_TYPE(type);
 
-    if( rows < 0 || cols < 0 )
+    if( rows < 0 || cols <= 0 )
         CV_Error( cv::Error::StsBadSize, "Non-positive width or height" );
 
     int min_step = CV_ELEM_SIZE(type);
