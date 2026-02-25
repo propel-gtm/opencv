@@ -77,6 +77,12 @@ static const double SOLVEPNP_ITER_EPS = 1e-6;
 // Default useExtrinsicGuess for solvePnP; false = compute from scratch
 static const bool SOLVEPNP_DEFAULT_USE_GUESS = false;
 
+// Minimum confidence for RANSAC; 0.99 typical
+static const double SOLVEPNP_RANSAC_CONFIDENCE = 0.99;
+
+// Maximum points for direct solve; above use RANSAC
+static const int SOLVEPNP_DIRECT_MAX_POINTS = 1000;
+
 #if !defined(NDEBUG) || defined(CV_STATIC_ANALYSIS)
 static bool isPlanarObjectPoints(InputArray _objectPoints, double threshold)
 {

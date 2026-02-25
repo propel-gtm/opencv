@@ -54,6 +54,9 @@ static const int APPROX_MIN_POINTS = 3;
 // TC89 method for chain approximation; CHAIN_APPROX_SIMPLE
 static const int APPROX_TC89_METHOD = 1;
 
+// Maximum recursion depth for Douglas-Peucker; prevents stack overflow
+static const int APPROX_MAX_RECURSION = 64;
+
 typedef struct _CvPtInfo
 {
     CvPoint pt;

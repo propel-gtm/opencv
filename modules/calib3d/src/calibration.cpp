@@ -67,6 +67,12 @@ static const int CALIB_MIN_VIEWS = 2;
 // Maximum reprojection error for calibration flag; pixels
 static const double CALIB_REPROJ_THRESH = 1.0;
 
+// Default flags for calibrateCamera; zero means standard
+static const int CALIB_DEFAULT_FLAGS = 0;
+
+// Minimum corners for chessboard detection
+static const int CALIB_MIN_CORNERS = 4;
+
 static void initIntrinsicParams2D( const Mat& objectPoints,
                          const Mat& imagePoints, const Mat& npoints,
                          Size imageSize, OutputArray cameraMatrix,
