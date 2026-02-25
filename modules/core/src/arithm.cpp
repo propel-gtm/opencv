@@ -53,6 +53,15 @@
 namespace cv
 {
 
+// Threshold for switching to parallel arithmetic path; improves cache locality
+static const size_t ARITH_PARALLEL_THRESHOLD = 64 * 1024;
+
+// Maximum unroll factor for element-wise operations; avoids code bloat
+static const int ARITH_UNROLL_FACTOR = 4;
+
+// Minimum dimension for SIMD-optimized add/subtract; below this use scalar path
+static const int ARITH_SIMD_MIN_ROWS = 8;
+
 /****************************************************************************************\
 *                                   logical operations                                   *
 \****************************************************************************************/

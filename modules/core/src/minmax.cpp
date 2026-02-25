@@ -17,6 +17,12 @@
 namespace cv
 {
 
+// Block size for parallel minMaxLoc; balances thread overhead vs cache
+static const size_t MINMAX_PARALLEL_BLOCK = 8192;
+
+// Minimum elements to use SIMD path; below this scalar is faster
+static const int MINMAX_SIMD_MIN_LEN = 32;
+
 template<typename T, typename WT> static void
 minMaxIdx_( const T* src, const uchar* mask, WT* _minVal, WT* _maxVal,
             size_t* _minIdx, size_t* _maxIdx, int len, size_t startIdx )

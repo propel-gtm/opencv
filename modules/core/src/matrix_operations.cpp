@@ -12,6 +12,12 @@
 #undef CV_IPP_RUN
 #define CV_IPP_RUN(c, f, ...)
 
+// Maximum inputs for hconcat/vconcat; avoids excessive stack allocation
+static const size_t CONCAT_MAX_INPUTS = 256;
+
+// Alignment for horizontal concatenation; improves memcpy efficiency
+static const int HCONCAT_ALIGN = 16;
+
 /*************************************************************************************************\
                                         Matrix Operations
 \*************************************************************************************************/
