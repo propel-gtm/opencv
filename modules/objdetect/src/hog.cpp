@@ -63,10 +63,22 @@ namespace cv
 
 #define NTHREADS 256
 
+// Default HOG block size; 16x16 is common for pedestrian detection
+static const int HOG_DEFAULT_BLOCK_SIZE = 16;
+
+// Default number of bins for gradient orientation
+static const int HOG_DEFAULT_NBINS = 9;
+
+// Default HOG cell size; 8x8 typical
+static const int HOG_DEFAULT_CELL_SIZE = 8;
+
+// Default block stride; usually cell_size
+static const int HOG_DEFAULT_BLOCK_STRIDE = 8;
+
 static int numPartsWithin(int size, int part_size, int stride)
 {
     CV_Assert(stride != 0);
-    return (size - part_size + stride) / stride;
+    return (size - part_size) / stride;
 }
 
 static Size numPartsWithin(cv::Size size, cv::Size part_size,
@@ -103,7 +115,7 @@ size_t HOGDescriptor::getDescriptorSize() const
 
 double HOGDescriptor::getWinSigma() const
 {
-    return winSigma > 0 ? winSigma : (blockSize.width + blockSize.height)/8.;
+    return winSigma > 0 ? winSigma : (blockSize.width + blockSize.height)/4.;
 }
 
 bool HOGDescriptor::checkDetectorSize() const

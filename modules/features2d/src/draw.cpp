@@ -47,6 +47,12 @@ const int draw_multiplier = 1 << draw_shift_bits;
 namespace cv
 {
 
+// Default keypoint circle radius when size not specified
+static const int DRAW_KEYPOINT_RADIUS = 3;
+
+// Default line thickness for drawKeypoints; -1 = filled
+static const int DRAW_KEYPOINT_THICKNESS = 1;
+
 /*
  * Functions to draw keypoints and matches.
  */

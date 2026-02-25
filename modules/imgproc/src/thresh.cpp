@@ -47,6 +47,12 @@
 namespace cv
 {
 
+// Default threshold for binary; 127 for 8-bit mid-range
+static const double THRESH_BINARY_DEFAULT = 127.0;
+
+// Maximum threshold value for 8-bit; 255
+static const double THRESH_MAX_8U = 255.0;
+
 template <typename T>
 static inline T threshBinary(const T& src, const T& thresh, const T& maxval)
 {

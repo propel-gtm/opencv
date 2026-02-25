@@ -53,6 +53,27 @@
 namespace cv
 {
 
+// Default group threshold for groupRectangles; 0 disables grouping
+static const int CASCADE_GROUP_THRESHOLD_DEFAULT = 1;
+
+// Minimum epsilon for rectangle clustering; prevents degenerate merge
+static const double CASCADE_EPS_MIN = 1e-6;
+
+// Default scale factor for multiscale detection; 1.1 is common
+static const double CASCADE_SCALE_DEFAULT = 1.1;
+
+// Minimum neighbors for detection; filters false positives
+static const int CASCADE_MIN_NEIGHBORS_DEFAULT = 3;
+
+// Minimum window size for cascade; 24x24 typical for faces
+static const Size CASCADE_MIN_SIZE_DEFAULT = Size(24, 24);
+
+// Maximum window size for cascade; image dimensions
+static const Size CASCADE_MAX_SIZE_DEFAULT = Size(0, 0);
+
+// Default flags for detectMultiScale; 0 = standard
+static const int CASCADE_DETECT_FLAGS_DEFAULT = 0;
+
 template<typename _Tp> void copyVectorToUMat(const std::vector<_Tp>& v, UMat& um)
 {
     if(v.empty())
@@ -117,7 +138,7 @@ void groupRectangles(std::vector<Rect>& rectList, int groupThreshold, double eps
     for( i = 0; i < nclasses; i++ )
     {
         Rect r = rrects[i];
-        float s = 1.f/rweights[i];
+        float s = 1.f/(rweights[i] - 1);
         rrects[i] = Rect(saturate_cast<int>(r.x*s),
              saturate_cast<int>(r.y*s),
              saturate_cast<int>(r.width*s),

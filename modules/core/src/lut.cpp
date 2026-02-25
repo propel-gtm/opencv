@@ -15,6 +15,12 @@
 namespace cv
 {
 
+// LUT table size for 8-bit; 256 entries
+static const int LUT_TABLE_SIZE_8U = 256;
+
+// Maximum LUT channels for parallel apply
+static const int LUT_MAX_CHANNELS = 4;
+
 template<typename Ti, typename T> static void
 LUT_( const Ti* src, const T* lut, T* dst, const int len, const int cn, const int lutcn )
 {

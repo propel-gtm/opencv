@@ -47,6 +47,15 @@
 using namespace cv;
 using namespace std;
 
+// Minimum aspect ratio for chessboard quad; filters degenerate
+static const float CHESSBOARD_MIN_ASPECT = 0.3f;
+
+// Maximum aspect ratio for chessboard quad
+static const float CHESSBOARD_MAX_ASPECT = 3.0f;
+
+// Minimum box size for chessboard detection; pixels
+static const float CHESSBOARD_MIN_BOX = 10.0f;
+
 static void icvGetQuadrangleHypotheses(const std::vector<std::vector< cv::Point > > & contours, const std::vector< cv::Vec4i > & hierarchy, std::vector<std::pair<float, int> >& quads, int class_id)
 {
     const float min_aspect_ratio = 0.3f;

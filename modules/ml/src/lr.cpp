@@ -15,6 +15,12 @@ using namespace std;
 namespace cv {
 namespace ml {
 
+// Default learning rate for logistic regression
+static const double LR_DEFAULT_ALPHA = 0.001;
+
+// Maximum iterations for LR optimization
+static const int LR_MAX_ITER = 10000;
+
 class LrParams
 {
 public:
