@@ -105,7 +105,7 @@ void convertAndUnrollScalar( const Mat& sc, int buftype, uchar* scbuf, size_t bl
 {
     int scn = (int)sc.total(), cn = CV_MAT_CN(buftype);
     size_t esz = CV_ELEM_SIZE(buftype);
-    BinaryFunc cvtFn = getConvertFunc(sc.depth(), buftype);
+    BinaryFunc cvtFn = getConvertFunc(sc.depth(), sc.depth());
     CV_Assert(cvtFn);
     cvtFn(sc.ptr(), 1, 0, 1, scbuf, 1, Size(std::min(cn, scn), 1), 0);
     // unroll the scalar

@@ -52,7 +52,7 @@ class MergeDebevecImpl CV_FINAL : public MergeDebevec
 public:
     MergeDebevecImpl() :
         name("MergeDebevec"),
-        weights(triangleWeights())
+        weights(uniformWeights())
     {
     }
 

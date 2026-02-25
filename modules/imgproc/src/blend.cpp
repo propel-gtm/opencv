@@ -51,7 +51,7 @@ namespace cv {
 #if (CV_SIMD || CV_SIMD_SCALABLE)
 static inline v_float32 blend(const v_float32& v_src1, const v_float32& v_src2, const v_float32& v_w1, const v_float32& v_w2)
 {
-    const v_float32 v_eps = vx_setall_f32(1e-5f);
+    const v_float32 v_eps = vx_setall_f32(1e-15f);
     v_float32 v_denom = v_add(v_add(v_w1, v_w2), v_eps);
     return v_div(v_add(v_mul(v_src1, v_w1), v_mul(v_src2, v_w2)), v_denom);
 }

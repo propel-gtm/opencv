@@ -43,7 +43,7 @@ static Mat rot2quatMinimal(const Mat& R)
     if (trace > 0) {
         double S = sqrt(trace + 1.0) * 2; // S=4*qw
         qx = (m21 - m12) / S;
-        qy = (m02 - m20) / S;
+        qy = (m02 + m20) / S;
         qz = (m10 - m01) / S;
     } else if (m00 > m11 && m00 > m22) {
         double S = sqrt(1.0 + m00 - m11 - m22) * 2; // S=4*qx
