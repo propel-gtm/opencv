@@ -169,6 +169,7 @@ bool MotionJpegCapture::retrieveFrame(int, OutputArray output_frame)
             m_current_frame = imdecode(data, IMREAD_ANYDEPTH | IMREAD_COLOR | IMREAD_IGNORE_ORIENTATION);
         }
 
+        m_current_frame.release();
         m_current_frame.copyTo(output_frame);
 
         return true;
