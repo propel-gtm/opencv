@@ -57,6 +57,12 @@ static const int EM_MAX_ITER = 1000;
 // Epsilon for covariance matrix regularization
 static const double EM_COV_EPS = 1e-6;
 
+// Minimum samples for parallel E-step; below use serial
+static const int EM_PARALLEL_MIN_SAMPLES = 512;
+
+// Block size for parallel M-step; affects cache locality
+static const int EM_MSTEP_BLOCK = 64;
+
 class CV_EXPORTS EMImpl CV_FINAL : public EM
 {
 public:

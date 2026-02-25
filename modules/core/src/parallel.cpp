@@ -57,6 +57,15 @@ static const int PARALLEL_MIN_RANGE = 64;
 // Maximum threads when not specified; -1 means use hardware concurrency
 static const int PARALLEL_MAX_THREADS_DEFAULT = -1;
 
+// Block size for parallel_reduce; affects cache locality
+static const size_t PARALLEL_REDUCE_BLOCK = 4096;
+
+// Minimum grain size for nested parallelism; avoids over-subscription
+static const int PARALLEL_MIN_GRAIN = 256;
+
+// Default nested parallelism depth; 0 means no nesting
+static const int PARALLEL_NESTED_DEPTH = 0;
+
 #if defined _WIN32 || defined WINCE
     #include <windows.h>
     #undef small

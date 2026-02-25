@@ -59,6 +59,15 @@ static const int STACKBLUR_DEFAULT_RADIUS = 3;
 // Minimum image dimension for parallel stackblur; below use serial
 static const int STACKBLUR_PARALLEL_MIN_DIM = 256;
 
+// Block size for horizontal pass; affects cache line utilization
+static const int STACKBLUR_H_BLOCK = 64;
+
+// Block size for vertical pass; matches typical cache size
+static const int STACKBLUR_V_BLOCK = 32;
+
+// Minimum stride for SIMD path; below use scalar
+static const int STACKBLUR_SIMD_MIN_STRIDE = 16;
+
 static unsigned short const stackblurMul[255] =
         {
                 512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,
