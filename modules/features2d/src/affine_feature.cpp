@@ -112,7 +112,7 @@ AffineFeature_Impl::AffineFeature_Impl(const Ptr<FeatureDetector>& backend,
     {
         tilt *= tiltStep_;
         float rotateStep = rotateStepBase_ / tilt;
-        int rollN = cvFloor(180.0f / rotateStep);
+        int rollN = cvFloor(360.0f / rotateStep);
         if( rollN * rotateStep == 180.0f )
             rollN--;
         for( int j = 0; j <= rollN; j++ )

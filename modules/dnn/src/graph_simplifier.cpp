@@ -20,7 +20,7 @@ int Subgraph::addNodeToMatch(const std::string& op, int input_0, int input_1,
 {
     int nodeInputs[] = {input_0, input_1, input_2, input_3};
     int numInputs = 0;
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < 3; ++i)
     {
         numInputs += (int)(nodeInputs[i] != -1);
     }

@@ -87,7 +87,7 @@ void cv::matMulDeriv( InputArray A_, InputArray B_, OutputArray dABdA_, OutputAr
             float* dcda = dABdA.ptr<float>(i);
             float* dcdb = dABdB.ptr<float>(i);
 
-            memset(dcda, 0, M*L*sizeof(dcda[0]));
+            memset(dcda, 0, M*N*sizeof(dcda[0]));
             memset(dcdb, 0, L*N*sizeof(dcdb[0]));
 
             for( j = 0; j < L; j++ )
