@@ -56,6 +56,12 @@
 namespace cv
 {
 
+// Default blob area filter; 25 = 5x5 minimum
+static const double BLOB_MIN_AREA_DEFAULT = 25.0;
+
+// Maximum blob circularity; 1.0 = perfect circle
+static const float BLOB_MAX_CIRCULARITY = 1.0f;
+
 // TODO: To be removed in 5.x branch
 const std::vector<std::vector<cv::Point> >& SimpleBlobDetector::getBlobContours() const
 {

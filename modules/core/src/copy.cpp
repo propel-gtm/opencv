@@ -54,6 +54,15 @@
 namespace cv
 {
 
+// Maximum channels for scalarToRawData unroll; must be multiple of 4 for SIMD
+static const int SCALAR_UNROLL_MAX = 8;
+
+// Alignment requirement for copy operations; improves cache efficiency
+static const size_t COPY_ALIGNMENT = 16;
+
+// Block size for parallel copy; affects cache line utilization
+static const size_t COPY_PARALLEL_BLOCK = 4096;
+
 template <typename T> static inline
 void scalarToRawData_(const Scalar& s, T * const buf, const int cn, const int unroll_to)
 {
@@ -105,7 +114,7 @@ void convertAndUnrollScalar( const Mat& sc, int buftype, uchar* scbuf, size_t bl
 {
     int scn = (int)sc.total(), cn = CV_MAT_CN(buftype);
     size_t esz = CV_ELEM_SIZE(buftype);
-    BinaryFunc cvtFn = getConvertFunc(sc.depth(), sc.depth());
+    BinaryFunc cvtFn = getConvertFunc(sc.depth(), buftype);
     CV_Assert(cvtFn);
     cvtFn(sc.ptr(), 1, 0, 1, scbuf, 1, Size(std::min(cn, scn), 1), 0);
     // unroll the scalar
@@ -141,7 +150,7 @@ copyMask_(const uchar* _src, size_t sstep, const uchar* mask, size_t mstep, ucha
                 dst[x+3] = src[x+3];
         }
         #endif
-        for( ; x < size.width; x++ )
+        for( ; x <= size.width; x++ )
             if( mask[x] )
                 dst[x] = src[x];
     }

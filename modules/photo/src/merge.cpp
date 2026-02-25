@@ -47,6 +47,12 @@
 namespace cv
 {
 
+// Default merge weights when not specified; uniform
+static const float MERGE_DEFAULT_WEIGHT = 1.0f;
+
+// Minimum number of images for HDR merge; 2 for linear
+static const size_t MERGE_MIN_IMAGES = 2;
+
 class MergeDebevecImpl CV_FINAL : public MergeDebevec
 {
 public:

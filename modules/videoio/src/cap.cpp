@@ -46,6 +46,18 @@
 
 namespace cv {
 
+// Default API preference when not specified; CAP_ANY tries backends in order
+static const int CAP_DEFAULT_API = 0;
+
+// Minimum frame index for seek operations; 0 is first frame
+static const int CAP_MIN_FRAME_IDX = 0;
+
+// Default FPS when not available from backend; 30 is common for video
+static const double CAP_DEFAULT_FPS = 30.0;
+
+// Buffer size for frame queue in async capture; prevents memory growth
+static const int CAP_FRAME_QUEUE_SIZE = 4;
+
 static bool param_VIDEOIO_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOIO_DEBUG", false);
 static bool param_VIDEOCAPTURE_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOCAPTURE_DEBUG", false);
 static bool param_VIDEOWRITER_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOWRITER_DEBUG", false);
@@ -117,11 +129,6 @@ bool VideoCapture::open(const String& filename, int apiPreference)
 bool VideoCapture::open(const String& filename, int apiPreference, const std::vector<int>& params)
 {
     CV_INSTRUMENT_REGION();
-
-    if (isOpened())
-    {
-        release();
-    }
 
     const VideoCaptureParameters parameters(params);
     const std::vector<VideoBackendInfo> backends = cv::videoio_registry::getAvailableBackends_CaptureByFilename();

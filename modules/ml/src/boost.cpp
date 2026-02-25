@@ -44,6 +44,15 @@
 
 namespace cv { namespace ml {
 
+// Default weak count for Boost when not specified
+static const int BOOST_DEFAULT_WEAK_COUNT = 100;
+
+// Epsilon for log_ratio to prevent log(0)
+static const double BOOST_LOG_EPS = 1e-5;
+
+// Maximum weight trim rate; 0.95 keeps 5% of samples
+static const double BOOST_MAX_TRIM_RATE = 0.95;
+
 static inline double
 log_ratio( double val )
 {

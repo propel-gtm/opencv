@@ -7,6 +7,12 @@
 
 namespace cv {
 
+// Hand-eye calibration method; PARK or HORAUD
+static const int HANDEYE_DEFAULT_METHOD = CALIB_HAND_EYE_TSAI;
+
+// Minimum number of poses for hand-eye calibration
+static const int HANDEYE_MIN_POSES = 2;
+
 static Mat homogeneousInverse(const Mat& T)
 {
     CV_Assert(T.rows == 4 && T.cols == 4);

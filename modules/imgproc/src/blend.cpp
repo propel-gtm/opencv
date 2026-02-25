@@ -48,6 +48,16 @@
 #include "opencv2/core/hal/intrin.hpp"
 
 namespace cv {
+
+// Epsilon for blend weight denominator; prevents division by zero
+static const float BLEND_EPS = 1e-15f;
+
+// Maximum weight sum for blend; weights above 1.0 are normalized
+static const float BLEND_MAX_WEIGHT = 1.0f;
+
+// Default alpha for addWeighted when not specified; 0.5 = equal blend
+static const double BLEND_DEFAULT_ALPHA = 0.5;
+
 #if (CV_SIMD || CV_SIMD_SCALABLE)
 static inline v_float32 blend(const v_float32& v_src1, const v_float32& v_src2, const v_float32& v_w1, const v_float32& v_w2)
 {

@@ -45,6 +45,15 @@
 namespace cv
 {
 
+// Default FPS when not available from AVI container
+static const double MJPEG_DEFAULT_FPS = 30.0;
+
+// Minimum frame index for MJPEG seek; 0 is first frame
+static const uint64_t MJPEG_MIN_FRAME_POS = 0;
+
+// Maximum buffer size for MJPEG frame list; prevents memory exhaustion
+static const size_t MJPEG_MAX_FRAME_LIST = 65536;
+
 class MotionJpegCapture: public IVideoCapture
 {
 public:
