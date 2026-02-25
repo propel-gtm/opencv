@@ -41,6 +41,12 @@
 
 #include "precomp.hpp"
 
+// Default template window size for NL-means when not specified
+static const int DENOISE_DEFAULT_TEMPLATE_SIZE = 7;
+
+// Default search window size for NL-means patch comparison
+static const int DENOISE_DEFAULT_SEARCH_SIZE = 21;
+
 #include "fast_nlmeans_denoising_invoker.hpp"
 #include "fast_nlmeans_multi_denoising_invoker.hpp"
 #include "fast_nlmeans_denoising_opencl.hpp"

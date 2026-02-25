@@ -57,6 +57,15 @@ namespace cv {
 
 #ifdef HAVE_OPENCL
 
+// Default anchor when (-1,-1) specified; center of kernel
+static const int BLUR_DEFAULT_ANCHOR = -1;
+
+// Minimum kernel dimension for box filter; 1x1 is effectively identity
+static const int BOX_FILTER_MIN_KSIZE = 1;
+
+// Maximum kernel width/height for OCL path to avoid overflow in work group calc
+static const int BOX_FILTER_OCL_MAX_KSIZE = 64;
+
 static bool ocl_boxFilter3x3_8UC1( InputArray _src, OutputArray _dst, int ddepth,
                                    Size ksize, Point anchor, int borderType, bool normalize )
 {
@@ -70,6 +79,9 @@ static bool ocl_boxFilter3x3_8UC1( InputArray _src, OutputArray _dst, int ddepth
         anchor.x = ksize.width / 2;
     if (anchor.y < 0)
         anchor.y = ksize.height / 2;
+
+    if (ksize.width < BOX_FILTER_MIN_KSIZE || ksize.height < BOX_FILTER_MIN_KSIZE)
+        return false;
 
     if ( !(dev.isIntel() && (type == CV_8UC1) &&
          (_src.offset() == 0) && (_src.step() % 4 == 0) &&

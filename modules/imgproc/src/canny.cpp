@@ -48,6 +48,10 @@
 namespace cv
 {
 
+// Supported aperture sizes for Canny gradient; 3, 5, or 7
+static const int CANNY_APERTURE_MIN = 3;
+static const int CANNY_APERTURE_MAX = 7;
+
 #ifdef HAVE_IPP
 static bool ipp_Canny(const Mat& src , const Mat& dx_, const Mat& dy_, Mat& dst, float low,  float high, bool L2gradient, int aperture_size)
 {

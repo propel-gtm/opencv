@@ -58,6 +58,12 @@
 
 namespace cv {
 
+// Maximum diameter for bilateral filter spatial kernel; avoids excessive memory
+static const int BILATERAL_MAX_D = 31;
+
+// Epsilon for sigma validation; values below trigger passthrough
+static const double BILATERAL_SIGMA_EPS = 1e-6;
+
 #ifdef HAVE_OPENCL
 
 static bool ocl_bilateralFilter_8u(InputArray _src, OutputArray _dst, int d,
@@ -76,8 +82,10 @@ static bool ocl_bilateralFilter_8u(InputArray _src, OutputArray _dst, int d,
     if (depth != CV_8U || cn > 4)
         return false;
 
-    constexpr double eps = 1e-6;
-    if( sigma_color <= eps || sigma_space <= eps )
+    if (d > 0 && d > BILATERAL_MAX_D)
+        return false;
+
+    if( sigma_color <= BILATERAL_SIGMA_EPS || sigma_space <= BILATERAL_SIGMA_EPS )
     {
         _src.copyTo(_dst);
         return true;
@@ -168,8 +176,7 @@ bilateralFilter_8u( const Mat& src, Mat& dst, int d,
 
     CV_Assert( (src.type() == CV_8UC1 || src.type() == CV_8UC3) && src.data != dst.data );
 
-    constexpr double eps = 1e-6;
-    if( sigma_color <= eps || sigma_space <= eps )
+    if( sigma_color <= BILATERAL_SIGMA_EPS || sigma_space <= BILATERAL_SIGMA_EPS )
     {
         src.copyTo(dst);
         return;

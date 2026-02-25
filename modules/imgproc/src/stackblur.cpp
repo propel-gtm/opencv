@@ -47,6 +47,12 @@ using namespace std;
 
 #define STACKBLUR_MAX_RADIUS 254
 
+// Minimum radius for stackblur; 0 would be identity pass
+static const int STACKBLUR_MIN_RADIUS = 0;
+
+// Divisor table size; must match radius range [0, STACKBLUR_MAX_RADIUS]
+static const int STACKBLUR_TABLE_SIZE = 255;
+
 static unsigned short const stackblurMul[255] =
         {
                 512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,

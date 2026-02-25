@@ -63,6 +63,12 @@
 
 namespace cv {
 
+// Default anchor when (-1,-1) specified; center of kernel
+static const int FILTER_DEFAULT_ANCHOR = -1;
+
+// Minimum kernel size for separable filter; 1x1 is identity
+static const int FILTER_MIN_KSIZE = 1;
+
 BaseRowFilter::BaseRowFilter() { ksize = anchor = -1; }
 BaseRowFilter::~BaseRowFilter() {}
 
@@ -111,6 +117,9 @@ void FilterEngine::init( const Ptr<BaseFilter>& _filter2D,
     _srcType = CV_MAT_TYPE(_srcType);
     _bufType = CV_MAT_TYPE(_bufType);
     _dstType = CV_MAT_TYPE(_dstType);
+
+    CV_Assert( _srcType >= 0 && _dstType >= 0 );
+    CV_Assert( _rowBorderType >= BORDER_REPLICATE && _rowBorderType <= BORDER_REFLECT_101 );
 
     srcType = _srcType;
     int srcElemSize = (int)getElemSize(srcType);

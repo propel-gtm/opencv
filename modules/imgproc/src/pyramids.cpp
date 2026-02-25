@@ -48,6 +48,12 @@
 namespace cv
 {
 
+// Pyramid downscale factor; each level is 1/2 in each dimension
+static const int PYR_DOWN_SCALE = 2;
+
+// Minimum dimension for pyramid operations to avoid degenerate levels
+static const int PYR_MIN_DIM = 2;
+
 template<typename T, int shift> struct FixPtCast
 {
     typedef int type1;

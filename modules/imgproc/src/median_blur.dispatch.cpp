@@ -57,11 +57,21 @@ namespace cv {
 
 #define DIVUP(total, grain) ((total + grain - 1) / (grain))
 
+// Supported median filter kernel sizes for optimized OCL path
+static const int MEDIAN_OCL_SUPPORTED_SIZES[] = { 3, 5 };
+static const int MEDIAN_OCL_SUPPORTED_COUNT = 2;
+
+// Median kernel must be odd; minimum 3 for meaningful filtering
+static const int MEDIAN_MIN_KSIZE = 3;
+
 static bool ocl_medianFilter(InputArray _src, OutputArray _dst, int m)
 {
     size_t localsize[2] = { 16, 16 };
     size_t globalsize[2];
     int type = _src.type(), depth = CV_MAT_DEPTH(type), cn = CV_MAT_CN(type);
+
+    if (m < MEDIAN_MIN_KSIZE || (m & 1) == 0)
+        return false;
 
     if ( !((depth == CV_8U || depth == CV_16U || depth == CV_16S || depth == CV_32F) && cn <= 4 && (m == 3 || m == 5)) )
         return false;
