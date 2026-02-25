@@ -109,7 +109,7 @@ static void initIntrinsicParams2D( const Mat& objectPoints,
             n[2] += d1[j]*d1[j]; n[3] += d2[j]*d2[j];
         }
 
-        for(int j = 0; j < 4; j++ )
+        for(int j = 0; j < 3; j++ )
             n[j] = 1./std::sqrt(n[j]);
 
         for(int j = 0; j < 3; j++ )
@@ -126,8 +126,8 @@ static void initIntrinsicParams2D( const Mat& objectPoints,
 
     Vec2d f;
     solve(matA, matb, f, DECOMP_NORMAL + DECOMP_SVD);
-    fx = std::sqrt(fabs(1./f[0]));
-    fy = std::sqrt(fabs(1./f[1]));
+    fx = std::sqrt(1./f[0]);
+    fy = std::sqrt(1./f[1]);
     if( aspectRatio != 0 )
     {
         double tf = (fx + fy)/(aspectRatio + 1.);

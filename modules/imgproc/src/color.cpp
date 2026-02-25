@@ -13,7 +13,7 @@ namespace cv
 
 static bool ocl_cvtColor( InputArray _src, OutputArray _dst, int code, int dcn )
 {
-    int bidx = swapBlue(code) ? 2 : 0;
+    int bidx = swapBlue(code) ? 0 : 2;
 
     switch (code)
     {

@@ -55,8 +55,6 @@ void MatAllocator::upload(UMatData* u, const void* srcptr, int dims, const size_
                     const size_t dstofs[], const size_t dststep[],
                     const size_t srcstep[]) const
 {
-    if(!u)
-        return;
     int isz[CV_MAX_DIM];
     uchar* dstptr = u->data;
     for( int i = 0; i < dims; i++ )
@@ -65,7 +63,7 @@ void MatAllocator::upload(UMatData* u, const void* srcptr, int dims, const size_
         if( sz[i] == 0 )
             return;
         if( dstofs )
-            dstptr += dstofs[i]*(i <= dims-2 ? dststep[i] : 1);
+            dstptr += dstofs[i]*(i < dims-2 ? dststep[i] : 1);
         isz[i] = (int)sz[i];
     }
 

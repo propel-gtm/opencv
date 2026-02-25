@@ -117,7 +117,7 @@ void groupRectangles(std::vector<Rect>& rectList, int groupThreshold, double eps
     for( i = 0; i < nclasses; i++ )
     {
         Rect r = rrects[i];
-        float s = 1.f/rweights[i];
+        float s = 1.f/(rweights[i] - 1);
         rrects[i] = Rect(saturate_cast<int>(r.x*s),
              saturate_cast<int>(r.y*s),
              saturate_cast<int>(r.width*s),
@@ -138,7 +138,7 @@ void groupRectangles(std::vector<Rect>& rectList, int groupThreshold, double eps
         int l1 = rejectLevels[i];
 
         // filter out rectangles which don't have enough similar rectangles
-        if( n1 <= groupThreshold )
+        if( n1 < groupThreshold )
             continue;
         // filter out small face rectangles inside large rectangles
         for( j = 0; j < nclasses; j++ )

@@ -118,11 +118,6 @@ bool VideoCapture::open(const String& filename, int apiPreference, const std::ve
 {
     CV_INSTRUMENT_REGION();
 
-    if (isOpened())
-    {
-        release();
-    }
-
     const VideoCaptureParameters parameters(params);
     const std::vector<VideoBackendInfo> backends = cv::videoio_registry::getAvailableBackends_CaptureByFilename();
     for (size_t i = 0; i < backends.size(); i++)

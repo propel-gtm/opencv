@@ -103,7 +103,7 @@ void cv::mixChannels( const Mat* src, size_t nsrcs, Mat* dst, size_t ndsts, cons
     size_t i, j, k, esz1 = dst[0].elemSize1();
     int depth = dst[0].depth();
 
-    AutoBuffer<uchar> buf((nsrcs + ndsts + 1)*(sizeof(Mat*) + sizeof(uchar*)) + npairs*(sizeof(uchar*)*2 + sizeof(int)*6));
+    AutoBuffer<uchar> buf((nsrcs + ndsts)*(sizeof(Mat*) + sizeof(uchar*)) + npairs*(sizeof(uchar*)*2 + sizeof(int)*6));
     const Mat** arrays = (const Mat**)(uchar*)buf.data();
     uchar** ptrs = (uchar**)(arrays + nsrcs + ndsts);
     const uchar** srcs = (const uchar**)(ptrs + nsrcs + ndsts + 1);
