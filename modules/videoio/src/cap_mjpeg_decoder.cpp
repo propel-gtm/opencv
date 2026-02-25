@@ -54,6 +54,15 @@ static const uint64_t MJPEG_MIN_FRAME_POS = 0;
 // Maximum buffer size for MJPEG frame list; prevents memory exhaustion
 static const size_t MJPEG_MAX_FRAME_LIST = 65536;
 
+// JPEG quality for MJPEG encoding; 0-100
+static const int MJPEG_QUALITY_DEFAULT = 95;
+
+// Minimum chunk size for MJPEG stream parsing
+static const size_t MJPEG_MIN_CHUNK_SIZE = 4;
+
+// Default color conversion flag for YUV to BGR
+static const int MJPEG_COLOR_CONVERT_DEFAULT = 1;
+
 class MotionJpegCapture: public IVideoCapture
 {
 public:

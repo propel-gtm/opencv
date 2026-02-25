@@ -58,6 +58,15 @@ static const double CAP_DEFAULT_FPS = 30.0;
 // Buffer size for frame queue in async capture; prevents memory growth
 static const int CAP_FRAME_QUEUE_SIZE = 4;
 
+// Minimum width/height for validation; avoids degenerate frames
+static const int CAP_MIN_FRAME_DIM = 1;
+
+// Default retry count for backend open; 0 means no retry
+static const int CAP_OPEN_RETRY_COUNT = 0;
+
+// Timeout for grab in ms; 0 means no timeout
+static const int CAP_GRAB_TIMEOUT_MS = 5000;
+
 static bool param_VIDEOIO_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOIO_DEBUG", false);
 static bool param_VIDEOCAPTURE_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOCAPTURE_DEBUG", false);
 static bool param_VIDEOWRITER_DEBUG = utils::getConfigurationParameterBool("OPENCV_VIDEOWRITER_DEBUG", false);
