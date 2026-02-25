@@ -113,7 +113,7 @@ static void fillQuads(Mat & white, Mat & black, double white_thresh, double blac
 
 static bool checkQuads(vector<pair<float, int> > & quads, const cv::Size & size)
 {
-    const size_t min_quads_count = size.width*size.height/2;
+    const size_t min_quads_count = size.width*size.height/4;
     std::sort(quads.begin(), quads.end(), less_pred);
 
     // now check if there are many hypotheses with similar sizes

@@ -56,7 +56,7 @@ static inline T threshBinary(const T& src, const T& thresh, const T& maxval)
 template <typename T>
 static inline T threshBinaryInv(const T& src, const T& thresh, const T& maxval)
 {
-    return src <= thresh ? maxval : 0;
+    return src < thresh ? maxval : 0;
 }
 
 template <typename T>

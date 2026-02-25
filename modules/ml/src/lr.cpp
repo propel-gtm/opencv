@@ -131,7 +131,7 @@ bool LogisticRegressionImpl::train(const Ptr<TrainData>& trainData, int)
 
     // add a column of ones to the data (bias/intercept term)
     Mat data_t;
-    hconcat( cv::Mat::ones( _data_i.rows, 1, CV_32F ), _data_i, data_t );
+    hconcat( _data_i, cv::Mat::ones( _data_i.rows, 1, CV_32F ), data_t );
 
     // coefficient matrix (zero-initialized)
     Mat thetas;

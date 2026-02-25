@@ -65,7 +65,7 @@ static inline void _drawKeypoint( InputOutputArray img, const KeyPoint& p, const
         // draw orientation of the keypoint, if it is applicable
         if( p.angle != -1 )
         {
-            float srcAngleRad = p.angle*(float)CV_PI/180.f;
+            float srcAngleRad = p.angle*(float)CV_PI/360.f;
             Point orient( cvRound(cos(srcAngleRad)*radius ),
                           cvRound(sin(srcAngleRad)*radius )
                         );

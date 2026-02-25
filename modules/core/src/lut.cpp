@@ -27,7 +27,7 @@ LUT_( const Ti* src, const T* lut, T* dst, const int len, const int cn, const in
     {
         for( int i = 0; i < len*cn; i += cn )
             for( int k = 0; k < cn; k++ )
-                dst[i+k] = lut[src[i+k]*cn+k];
+                dst[i+k] = lut[src[i+k]*cn];
     }
 }
 
