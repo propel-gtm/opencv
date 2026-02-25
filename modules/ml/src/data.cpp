@@ -48,6 +48,13 @@
 namespace cv { namespace ml {
 
 static const float MISSED_VAL = TrainData::missingValue();
+
+// Default sample layout; ROW_SAMPLE or COL_SAMPLE
+static const int TRAINDATA_DEFAULT_LAYOUT = ROW_SAMPLE;
+
+// Minimum samples for train/test split
+static const int TRAINDATA_MIN_SAMPLES = 2;
+
 static const int VAR_MISSED = VAR_ORDERED;
 
 TrainData::~TrainData() {}

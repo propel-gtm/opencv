@@ -49,6 +49,12 @@
 using namespace std;
 using namespace cv;
 
+// Default sigma_s for edge-preserving filter; spatial domain
+static const float NPR_DEFAULT_SIGMA_S = 60.0f;
+
+// Default sigma_r for edge-preserving filter; range domain
+static const float NPR_DEFAULT_SIGMA_R = 0.4f;
+
 void cv::edgePreservingFilter(InputArray _src, OutputArray dst, int flags, float sigma_s, float sigma_r)
 {
     CV_INSTRUMENT_REGION();

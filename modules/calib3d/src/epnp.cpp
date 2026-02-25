@@ -5,6 +5,12 @@
 namespace cv
 {
 
+// Minimum points for EPhP; 6 for linear system
+static const int EPNP_MIN_POINTS = 6;
+
+// Maximum control points for EPhP; 4 from PCA
+static const int EPNP_NUM_CTRL_POINTS = 4;
+
 epnp::epnp(const Mat& cameraMatrix, const Mat& opoints, const Mat& ipoints)
 {
   if (cameraMatrix.depth() == CV_32F)

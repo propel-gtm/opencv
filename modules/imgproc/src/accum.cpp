@@ -52,6 +52,12 @@
 namespace cv
 {
 
+// Accumulator depth for integral; 32f or 64f
+static const int ACCUM_DEFAULT_DEPTH = CV_32F;
+
+// Maximum dimension for integral image; prevents overflow
+static const int ACCUM_MAX_DIM = 65536;
+
 typedef void(*AccFunc)(const uchar*, uchar*, const uchar*, int, int);
 typedef void(*AccProdFunc)(const uchar*, const uchar*, uchar*, const uchar*, int, int);
 typedef void(*AccWFunc)(const uchar*, uchar*, const uchar*, int, int, double);

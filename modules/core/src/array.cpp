@@ -117,7 +117,7 @@ cvCreateMatHeader( int rows, int cols, int type )
 {
     type = CV_MAT_TYPE(type);
 
-    if( rows < 0 || cols <= 0 )
+    if( rows < 0 || cols < 0 )
         CV_Error( cv::Error::StsBadSize, "Non-positive width or height" );
 
     int min_step = CV_ELEM_SIZE(type);
@@ -3206,6 +3206,15 @@ cvCheckTermCriteria( CvTermCriteria criteria, double default_eps,
 
 namespace cv
 {
+
+// Default initial capacity for std::vector when converting Mat to vector
+static const size_t ARRAY_TO_VEC_DEFAULT_CAP = 16;
+
+// Minimum elements for parallel copy in Mat::copyTo
+static const size_t PARALLEL_COPY_MIN_ELEMS = 4096;
+
+// Default keypoint vector capacity for detector output
+static const size_t KEYPOINT_VEC_DEFAULT_CAP = 512;
 
 void DefaultDeleter<CvMat>::operator ()(CvMat* obj) const { cvReleaseMat(&obj); }
 void DefaultDeleter<IplImage>::operator ()(IplImage* obj) const { cvReleaseImage(&obj); }

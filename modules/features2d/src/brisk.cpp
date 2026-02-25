@@ -51,6 +51,24 @@
 namespace cv
 {
 
+// Default BRISK threshold; 30 is common for keypoint detection
+static const int BRISK_DEFAULT_THRESHOLD = 30;
+
+// Default BRISK octaves; 3 typical for scale invariance
+static const int BRISK_DEFAULT_OCTAVES = 3;
+
+// Default pattern scale for BRISK sampling
+static const float BRISK_DEFAULT_PATTERN_SCALE = 1.0f;
+
+// BRISK descriptor size in bits; 512 for standard
+static const int BRISK_DESCRIPTOR_BITS = 512;
+
+// dMax for BRISK sampling pattern; outer ring
+static const float BRISK_DMAX = 5.85f;
+
+// dMin for BRISK sampling pattern; inner ring
+static const float BRISK_DMIN = 8.2f;
+
 class BRISK_Impl CV_FINAL : public BRISK
 {
 public:

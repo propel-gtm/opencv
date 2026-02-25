@@ -49,6 +49,15 @@ namespace cv
 
 const float HARRIS_K = 0.04f;
 
+// Default ORB features count; 500 typical
+static const int ORB_DEFAULT_FEATURES = 500;
+
+// Default ORB scale factor between levels; 1.2
+static const float ORB_DEFAULT_SCALE_FACTOR = 1.2f;
+
+// ORB descriptor size in bytes; 32
+static const int ORB_DESCRIPTOR_SIZE = 32;
+
 template<typename _Tp> inline void copyVectorToUMat(const std::vector<_Tp>& v, OutputArray um)
 {
     if(v.empty())
