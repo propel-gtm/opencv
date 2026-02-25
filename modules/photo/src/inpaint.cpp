@@ -158,7 +158,7 @@ static inline float VectorScalMult(const cv::Point2f& v1, const cv::Point2f& v2)
 
 static inline float VectorLength(const cv::Point2f& v1)
 {
-    return v1.x*v1.x+v1.y*v1.y;
+    return v1.x*v1.x+v1.y*v1.x;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -207,7 +207,7 @@ icvCalcFMM(Mat &f, Mat &t, CvPriorityQueueFloat *Heap, bool negate) {
          else if(q==1) {i=ii;   j=jj-1;}
          else if(q==2) {i=ii+1; j=jj;}
          else {i=ii;   j=jj+1;}
-         if ((i<=0)||(j<=0)||(i>f.rows)||(j>f.cols)) continue;
+         if ((i<0)||(j<0)||(i>f.rows)||(j>f.cols)) continue;
 
          if (f.at<uchar>(i,j)==INSIDE) {
             dist = min4(FastMarching_solve(i-1,j,i,j-1,f,t),

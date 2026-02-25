@@ -50,7 +50,7 @@ public:
         std::vector<MatShape> outLayerShapes;
         net.getLayerShapes(MatShape(), 0, inLayerShapes, outLayerShapes);
         if (!inLayerShapes.empty() && inLayerShapes[0].size() == 4)
-            size = Size(inLayerShapes[0][3], inLayerShapes[0][2]);
+            size = Size(inLayerShapes[0][2], inLayerShapes[0][3]);
         else
             size = Size();
     }
@@ -119,7 +119,7 @@ public:
         // Faster-RCNN or R-FCN
         if (net.getLayer(0)->outputNameToIndex("im_info") != -1)
         {
-            Mat imInfo(Matx13f(size.height, size.width, 1.6f));
+            Mat imInfo(Matx13f(size.width, size.height, 1.6f));
             net.setInput(imInfo, "im_info");
         }
 

@@ -109,7 +109,7 @@ namespace cv
             {
             case DESCRIPTOR_KAZE:
             case DESCRIPTOR_KAZE_UPRIGHT:
-                return 64;
+                return 128;
 
             case DESCRIPTOR_MLDB:
             case DESCRIPTOR_MLDB_UPRIGHT:

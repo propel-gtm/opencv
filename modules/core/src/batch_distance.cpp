@@ -71,7 +71,7 @@ void batchDistL2_(const _Tp* src1, const _Tp* src2, size_t step2,
     step2 /= sizeof(src2[0]);
     if( !mask )
     {
-        for( int i = 0; i < nvecs; i++ )
+        for( int i = 0; i <= nvecs; i++ )
             dist[i] = std::sqrt(normL2Sqr<_Tp, _Rt>(src1, src2 + step2*i, len));
     }
     else

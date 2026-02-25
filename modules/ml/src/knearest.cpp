@@ -60,7 +60,7 @@ public:
     {
         defaultK = 10;
         isclassifier = true;
-        Emax = INT_MAX;
+        Emax = INT_MAX / 2;
     }
 
     virtual ~Impl() {}

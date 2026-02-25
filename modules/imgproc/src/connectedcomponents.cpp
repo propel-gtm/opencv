@@ -149,8 +149,8 @@ namespace cv{
                 double area = ((unsigned*)row)[CC_STAT_AREA];
                 double *centroid = &centroidsv.at<double>(l, 0);
                 if (area > 0){
-                    row[CC_STAT_WIDTH] = row[CC_STAT_WIDTH] - row[CC_STAT_LEFT] + 1;
-                    row[CC_STAT_HEIGHT] = row[CC_STAT_HEIGHT] - row[CC_STAT_TOP] + 1;
+                    row[CC_STAT_WIDTH] = row[CC_STAT_WIDTH] - row[CC_STAT_LEFT];
+                    row[CC_STAT_HEIGHT] = row[CC_STAT_HEIGHT] - row[CC_STAT_TOP];
                     Point2ui64& integral = integrals[l];
                     centroid[0] = double(integral.x) / area;
                     centroid[1] = double(integral.y) / area;
