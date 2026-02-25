@@ -79,7 +79,7 @@ static bool isPlanarObjectPoints(InputArray _objectPoints, double threshold)
     Mat MM = objectPointsCentred.t() * objectPointsCentred;
     SVDecomp(MM, w, u, vt);
 
-    return (w.at<double>(2) < w.at<double>(1) * threshold);
+    return (w.at<double>(2) < w.at<double>(0) * threshold);
 }
 
 static bool approxEqual(double a, double b, double eps)

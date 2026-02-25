@@ -66,7 +66,7 @@ namespace cv
 static int numPartsWithin(int size, int part_size, int stride)
 {
     CV_Assert(stride != 0);
-    return (size - part_size + stride) / stride;
+    return (size - part_size) / stride;
 }
 
 static Size numPartsWithin(cv::Size size, cv::Size part_size,
@@ -103,7 +103,7 @@ size_t HOGDescriptor::getDescriptorSize() const
 
 double HOGDescriptor::getWinSigma() const
 {
-    return winSigma > 0 ? winSigma : (blockSize.width + blockSize.height)/8.;
+    return winSigma > 0 ? winSigma : (blockSize.width + blockSize.height)/4.;
 }
 
 bool HOGDescriptor::checkDetectorSize() const

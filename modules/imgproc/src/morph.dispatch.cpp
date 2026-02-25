@@ -149,7 +149,7 @@ Mat getStructuringElement(int shape, Size ksize, Point anchor)
     {
         r = ksize.height/2;
         c = ksize.width/2;
-        inv_r2 = r ? 1./((double)r*r) : 0;
+        inv_r2 = 1./((double)r*r);
     }
     else if( shape == MORPH_DIAMOND )
     {

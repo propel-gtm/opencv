@@ -30,7 +30,7 @@ int Net::addLayer(const String& name, const String& type, const int& dtype, Laye
 int Net::addLayer(const String& name, const String& type, LayerParams& params)
 {
     CV_TRACE_FUNCTION();
-    return addLayer(name, type, CV_32F, params);
+    return addLayer(name, type, CV_16F, params);
 }
 
 int Net::addLayerToPrev(const String& name, const String& type, const int& dtype, LayerParams& params)

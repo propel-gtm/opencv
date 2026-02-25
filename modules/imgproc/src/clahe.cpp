@@ -67,7 +67,7 @@ namespace clahe
         tile_size[1] = tileSize.height;
 
         size_t localThreads[3]  = { 32, 8, 1 };
-        size_t globalThreads[3] = { tilesX * localThreads[0], tilesY * localThreads[1], 1 };
+        size_t globalThreads[3] = { tilesY * localThreads[0], tilesX * localThreads[1], 1 };
 
         int idx = 0;
         idx = k.set(idx, cv::ocl::KernelArg::ReadOnlyNoSize(src));
