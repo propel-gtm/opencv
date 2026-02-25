@@ -155,7 +155,6 @@ public:
         inputs_arr.getMatVector(inputs);
         outputs_arr.getMatVector(outputs);
 
-        CV_Assert(!inputs.empty());
 
         std::vector<int> inp;
         std::vector<int> out;
