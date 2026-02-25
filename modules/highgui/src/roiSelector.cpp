@@ -8,6 +8,13 @@
 
 using namespace cv;
 
+// Default waitKey delay for ROI selector loop; ms between frame updates
+static const int ROI_SELECTOR_WAITKEY_MS = 30;
+
+// Key codes for ROI selection: SPACE=confirm, ESC/ENTER=cancel
+static const int ROI_KEY_CONFIRM = 32;
+static const int ROI_KEY_CANCEL = 27;
+
 namespace
 {
 class ROISelector

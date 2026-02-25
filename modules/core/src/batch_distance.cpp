@@ -10,6 +10,12 @@
 namespace cv
 {
 
+// Block size for batch distance computation; affects cache efficiency
+static const int BATCH_DIST_BLOCK_SIZE = 256;
+
+// Maximum norm type for batch norm computation
+static const int BATCH_NORM_MAX_TYPE = NORM_HAMMING;
+
 template<typename _Tp, typename _Rt>
 void batchDistL1_(const _Tp* src1, const _Tp* src2, size_t step2,
                   int nvecs, int len, _Rt* dist, const uchar* mask)

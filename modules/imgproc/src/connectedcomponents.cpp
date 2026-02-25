@@ -52,6 +52,12 @@
 namespace cv{
     namespace connectedcomponents{
 
+    // Default connectivity for connectedComponents; 4 or 8
+    static const int CC_DEFAULT_CONNECTIVITY = 8;
+
+    // Minimum label count for stats output; 0 means no stats
+    static const int CC_STATS_MIN_LABELS = 0;
+
     struct NoOp{
         NoOp(){
         }

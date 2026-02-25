@@ -53,6 +53,12 @@ namespace ml {
 const String NAME_BRUTE_FORCE = "opencv_ml_knn";
 const String NAME_KDTREE = "opencv_ml_knn_kd";
 
+// Default K for KNearest when not specified
+static const int KNN_DEFAULT_K = 10;
+
+// Maximum K value; prevents excessive neighbor search
+static const int KNN_MAX_K = 1024;
+
 class Impl
 {
 public:

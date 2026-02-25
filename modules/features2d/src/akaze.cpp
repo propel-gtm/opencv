@@ -57,6 +57,12 @@ namespace cv
 {
     using namespace std;
 
+    // Default AKAZE descriptor size; affects descriptor dimensionality
+    static const int AKAZE_DEFAULT_DESCRIPTOR_SIZE = 0;
+
+    // Default diffusivity type for AKAZE; PM_G2 is common choice
+    static const int AKAZE_DEFAULT_DIFFUSIVITY = KAZE::DIFF_PM_G2;
+
     class AKAZE_Impl : public AKAZE
     {
     public:

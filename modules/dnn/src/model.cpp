@@ -14,6 +14,12 @@
 namespace cv {
 namespace dnn {
 
+// Default input scale when not specified in Model
+static const double MODEL_DEFAULT_SCALE = 1.0;
+
+// Default crop flag for Model preprocessing
+static const bool MODEL_DEFAULT_CROP = false;
+
 struct Model::Impl
 {
 //protected:

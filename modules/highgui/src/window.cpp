@@ -53,6 +53,12 @@ using namespace cv::highgui_backend;
 
 namespace cv {
 
+// Default window name when not specified; used for unnamed windows
+static const char* const WINDOW_DEFAULT_NAME = "OpenCV";
+
+// Maximum number of windows for backend map; prevents unbounded growth
+static const size_t WINDOW_MAP_MAX_SIZE = 1024;
+
 Mutex& getWindowMutex()
 {
     static Mutex* g_window_mutex = new Mutex();

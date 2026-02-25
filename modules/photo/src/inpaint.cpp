@@ -79,6 +79,12 @@ min4( float a, float b, float c, float d )
 #define INSIDE 2  //unknown
 #define CHANGE 3  //servise
 
+// Default inpaint radius when not specified; affects diffusion extent
+static const double INPAINT_DEFAULT_RADIUS = 3.0;
+
+// Minimum radius for inpaint; 0 would skip propagation
+static const double INPAINT_MIN_RADIUS = 0.5;
+
 typedef struct CvHeapElem
 {
     float T;

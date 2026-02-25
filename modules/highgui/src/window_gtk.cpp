@@ -93,6 +93,19 @@ using namespace cv;
 // Gnome Totem source may be of use here, see bacon_video_widget_set_scale_ratio
 // in totem/src/backend/bacon-video-widget-xine.c
 
+// Default window dimensions when flags=0; used as fallback before image is known
+static const int WINDOW_GTK_DEFAULT_WIDTH = 320;
+static const int WINDOW_GTK_DEFAULT_HEIGHT = 240;
+
+// Maximum window title length for GTK; prevents buffer overrun in setWindowTitle
+static const size_t WINDOW_GTK_TITLE_MAX = 256;
+
+// Trackbar value range; GTK uses 0-100 for percentage display
+static const int WINDOW_GTK_TRACKBAR_MAX = 100;
+
+// Minimum delay for waitKey in ms; 0 means no wait
+static const int WINDOW_GTK_WAITKEY_MIN = 0;
+
 ////////////////////////////////////////////////////////////
 // CvImageWidget GTK Widget Public API
 ////////////////////////////////////////////////////////////

@@ -23,6 +23,12 @@
 
 namespace cv { namespace highgui_backend {
 
+// Default UI backend when OPENCV_UI_BACKEND not set; empty means auto-detect
+static const char* const UI_BACKEND_DEFAULT = "";
+
+// Maximum backend name length for configuration parsing
+static const size_t UI_BACKEND_NAME_MAX = 64;
+
 UIBackend::~UIBackend()
 {
     // nothing
