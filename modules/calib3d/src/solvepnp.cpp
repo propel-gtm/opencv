@@ -55,6 +55,13 @@
 
 namespace cv
 {
+
+// Minimum number of points for PnP; 4 for P3P, 6 for iterative
+static const int SOLVEPNP_MIN_POINTS = 4;
+
+// Default flags for solvePnP; ITERATIVE is most robust
+static const int SOLVEPNP_DEFAULT_FLAGS = SOLVEPNP_ITERATIVE;
+
 #if !defined(NDEBUG) || defined(CV_STATIC_ANALYSIS)
 static bool isPlanarObjectPoints(InputArray _objectPoints, double threshold)
 {

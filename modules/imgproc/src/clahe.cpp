@@ -50,6 +50,12 @@
 
 namespace clahe
 {
+    // Default clip limit for CLAHE OCL path when not specified
+    static const float CLAHE_OCL_DEFAULT_CLIP = 40.0f;
+
+    // Minimum tile size for CLAHE; 1x1 would be degenerate
+    static const int CLAHE_MIN_TILE_SIZE = 2;
+
     static bool calcLut(cv::InputArray _src, cv::OutputArray _dst,
         const int tilesX, const int tilesY, const cv::Size tileSize,
         const int clipLimit, const float lutScale)

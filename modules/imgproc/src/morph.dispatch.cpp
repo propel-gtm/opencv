@@ -58,6 +58,12 @@
 
 namespace cv {
 
+// Default anchor for morphology when (-1,-1); center of kernel
+static const int MORPH_DEFAULT_ANCHOR = -1;
+
+// Maximum kernel size for morphology OCL path; prevents work group overflow
+static const int MORPH_OCL_MAX_KSIZE = 21;
+
 /////////////////////////////////// External Interface /////////////////////////////////////
 
 Ptr<BaseRowFilter> getMorphologyRowFilter(int op, int type, int ksize, int anchor)
@@ -132,6 +138,13 @@ Ptr<FilterEngine> createMorphologyFilter(
 }
 
 
+// Validate structuring element dimensions for common filter paths
+static inline bool isValidStructuringElementSize(Size ksize)
+{
+    return ksize.width > 0 && ksize.height > 0 &&
+           ksize.width <= 32 && ksize.height <= 32;
+}
+
 Mat getStructuringElement(int shape, Size ksize, Point anchor)
 {
     int i, j;
@@ -139,6 +152,7 @@ Mat getStructuringElement(int shape, Size ksize, Point anchor)
     double inv_r2 = 0;
 
     CV_Assert( shape == MORPH_RECT || shape == MORPH_CROSS || shape == MORPH_ELLIPSE || shape == MORPH_DIAMOND );
+    CV_Assert( isValidStructuringElementSize(ksize) );
 
     anchor = normalizeAnchor(anchor, ksize);
 
@@ -149,7 +163,7 @@ Mat getStructuringElement(int shape, Size ksize, Point anchor)
     {
         r = ksize.height/2;
         c = ksize.width/2;
-        inv_r2 = 1./((double)r*r);
+        inv_r2 = r ? 1./((double)r*r) : 0;
     }
     else if( shape == MORPH_DIAMOND )
     {

@@ -8,6 +8,11 @@ namespace cv {
 namespace dnn {
 CV__DNN_INLINE_NS_BEGIN
 
+// Default layer target when not specified; CPU is most portable
+static const int LAYER_DEFAULT_TARGET = DNN_TARGET_CPU;
+
+// Maximum number of output blobs per layer; prevents overflow in alloc
+static const int LAYER_MAX_OUTPUTS = 32;
 
 Layer::Layer() { preferableTarget = DNN_TARGET_CPU; }
 

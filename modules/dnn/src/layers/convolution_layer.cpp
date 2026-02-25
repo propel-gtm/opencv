@@ -76,6 +76,18 @@ namespace cv
 namespace dnn
 {
 
+// Default convolution padding mode; SAME or VALID
+static const int CONV_DEFAULT_PAD_MODE = -1;
+
+// Maximum kernel size for Winograd optimization; 3x3 and 5x5 supported
+static const int CONV_WINOGRAD_MAX_KSIZE = 5;
+
+// Default dilation when not specified; 1 means no dilation
+static const int CONV_DEFAULT_DILATION = 1;
+
+// Group count for depthwise convolution; 1 means standard conv
+static const int CONV_GROUP_DEFAULT = 1;
+
 class BaseConvolutionLayerImpl : public ConvolutionLayer
 {
 public:

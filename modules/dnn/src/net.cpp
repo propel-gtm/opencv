@@ -10,6 +10,12 @@ namespace cv {
 namespace dnn {
 CV__DNN_INLINE_NS_BEGIN
 
+// Default backend when not specified; uses best available
+static const int NET_DEFAULT_BACKEND = DNN_BACKEND_DEFAULT;
+
+// Default target for inference; CPU, OpenCL, etc.
+static const int NET_DEFAULT_TARGET = DNN_TARGET_CPU;
+
 Net::Net()
     : impl(makePtr<Net::Impl>())
 {

@@ -10,6 +10,12 @@
 
 namespace cv {
 
+// Maximum depth value for CV_MAT_DEPTH; CV_16F is 8
+static const int CHECK_MAX_DEPTH = CV_16F;
+
+// Maximum channel count for type string formatting
+static const int CHECK_MAX_CN = 512;
+
 const char* depthToString(int depth)
 {
     const char* s = detail::depthToString_(depth);

@@ -89,6 +89,16 @@ namespace cv
 {
 namespace dnn
 {
+
+// Default pooling kernel size when not specified; 2x2 common for downsampling
+static const int POOLING_DEFAULT_KSIZE = 2;
+
+// Maximum pooling kernel size; prevents excessive memory in OCL path
+static const int POOLING_MAX_KSIZE = 64;
+
+// Padding mode for pooling; SAME or VALID
+static const int POOLING_PAD_SAME = -1;
+
 static inline int roundRoiSize(float v)
 {
     return (int)(v + (v >= 0.f ? 0.5f : -0.5f));

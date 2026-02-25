@@ -63,6 +63,12 @@ namespace cv
 
 #define NTHREADS 256
 
+// Default HOG block size; 16x16 is common for pedestrian detection
+static const int HOG_DEFAULT_BLOCK_SIZE = 16;
+
+// Default number of bins for gradient orientation
+static const int HOG_DEFAULT_NBINS = 9;
+
 static int numPartsWithin(int size, int part_size, int stride)
 {
     CV_Assert(stride != 0);
