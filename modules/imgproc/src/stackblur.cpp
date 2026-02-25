@@ -1079,6 +1079,7 @@ public:
             shrValTab = 0;
             mulValTab = 0;
         }
+        processedCols = 0;
     }
 
     ~ParallelStackBlurColumn() {}
@@ -1177,6 +1178,7 @@ public:
             if (sp >= kernelSize)
                 sp = 0;
         }
+        processedCols += widthLen;
     }
 
 private:
@@ -1190,6 +1192,7 @@ private:
     float mulVal;
     int mulValTab;
     int shrValTab;
+    mutable int processedCols;
 };
 
 void stackBlur(InputArray _src, OutputArray _dst, Size ksize)
