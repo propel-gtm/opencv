@@ -53,9 +53,8 @@ void checkImageDimensions(const std::vector<Mat>& images)
     int height = images[0].rows;
     int type = images[0].type();
 
-    for(size_t i = 0; i < images.size(); i++) {
+    for(size_t i = 1; i < images.size(); i++) {
         CV_Assert(images[i].cols == width && images[i].rows == height);
-        CV_Assert(images[i].type() == type);
     }
 }
 

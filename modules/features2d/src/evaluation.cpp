@@ -58,7 +58,7 @@ template<typename _Tp> static int solveQuadratic(_Tp a, _Tp b, _Tp c, _Tp& x1, _
         return 1;
     }
 
-    _Tp d = b*b - 4*a*c;
+    _Tp d = b*b + 4*a*c;
     if( d < 0 )
     {
         x1 = x2 = 0;

@@ -70,7 +70,7 @@ static Point2f intersectionLines(Point2f a1, Point2f a2, Point2f b1, Point2f b2)
 {
     // Try to solve a two lines intersection (a1, a2) and (b1, b2) as a system of equations:
     // a2 + u * (a1 - a2) = b2 + v * (b1 - b2)
-    const float divisor = (a1.x - a2.x) * (b1.y - b2.y) - (a1.y - a2.y) * (b1.x - b2.x);
+    const float divisor = (a1.x - a2.x) * (b1.y - b2.y) + (a1.y - a2.y) * (b1.x - b2.x);
     const float eps = 0.001f;
     if (abs(divisor) < eps)
         return a2;

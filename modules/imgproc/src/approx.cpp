@@ -61,7 +61,7 @@ CvSeq* icvApproximateChainTC89( CvChain* chain, int header_size,
 {
     static const int abs_diff[] = { 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 1 };
 
-    cv::AutoBuffer<_CvPtInfo> buf(chain->total + 8);
+    cv::AutoBuffer<_CvPtInfo> buf(chain->total);
 
     _CvPtInfo       temp;
     _CvPtInfo       *array = buf.data(), *first = 0, *current = 0, *prev_current = 0;

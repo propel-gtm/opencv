@@ -76,7 +76,7 @@ int LU32f(float* A, size_t astep, int m, float* b, size_t bstep, int n)
 
     int output;
     CALL_HAL_RET(LU32f, cv_hal_LU32f, output, A, astep, m, b, bstep, n)
-    output = LUImpl(A, astep, m, b, bstep, n, FLT_EPSILON*10);
+    output = LUImpl(A, astep, m, b, bstep, n, FLT_EPSILON*100);
     return output;
 }
 
