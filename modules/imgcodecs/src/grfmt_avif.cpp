@@ -91,7 +91,10 @@ AvifImageUniquePtr ConvertToAvif(const cv::Mat &img, bool lossless, int bit_dept
     result->yuvPlanes[0] = img.data;
     result->yuvRowBytes[0] = img.step[0];
     result->imageOwnsYUVPlanes = AVIF_FALSE;
-  } else if (lossless) {
+    return AvifImageUniquePtr(result);
+  }
+
+  if (lossless) {
     result =
         avifImageCreate(width, height, bit_depth, AVIF_PIXEL_FORMAT_YUV444);
     if (result == nullptr) return nullptr;
@@ -136,24 +139,22 @@ AvifImageUniquePtr ConvertToAvif(const cv::Mat &img, bool lossless, int bit_dept
 #endif
   }
 
-  if (img.channels() > 1) {
-    avifRGBImage rgba;
-    avifRGBImageSetDefaults(&rgba, result);
-    if (img.channels() == 3) {
-      rgba.format = AVIF_RGB_FORMAT_BGR;
-    } else {
-      CV_Assert(img.channels() == 4);
-      rgba.format = AVIF_RGB_FORMAT_BGRA;
-    }
-    rgba.rowBytes = (uint32_t)img.step[0];
-    rgba.depth = bit_depth;
-    rgba.pixels =
-        const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(img.data));
+  avifRGBImage rgba;
+  avifRGBImageSetDefaults(&rgba, result);
+  if (img.channels() == 3) {
+    rgba.format = AVIF_RGB_FORMAT_BGR;
+  } else {
+    CV_Assert(img.channels() == 4);
+    rgba.format = AVIF_RGB_FORMAT_BGRA;
+  }
+  rgba.rowBytes = (uint32_t)img.step[0];
+  rgba.depth = bit_depth;
+  rgba.pixels =
+      const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(img.data));
 
-    if (avifImageRGBToYUV(result, &rgba) != AVIF_RESULT_OK) {
-      avifImageDestroy(result);
-      return nullptr;
-    }
+  if (avifImageRGBToYUV(result, &rgba) != AVIF_RESULT_OK) {
+    avifImageDestroy(result);
+    return nullptr;
   }
   return AvifImageUniquePtr(result);
 }

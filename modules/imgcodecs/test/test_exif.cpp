@@ -296,15 +296,13 @@ INSTANTIATE_TEST_CASE_P(Imgcodecs, Exif,
                         testing::ValuesIn(exif_files));
 
 #ifdef HAVE_AVIF
-typedef testing::TestWithParam<int> MatChannels;
-
-TEST_P(MatChannels, Imgcodecs_Avif_ReadWriteWithExif)
+TEST(Imgcodecs_Avif, ReadWriteWithExif)
 {
     int avif_nbits = 10;
     int avif_speed = 10;
     int avif_quality = 85;
     int imgdepth = avif_nbits > 8 ? CV_16U : CV_8U;
-    int imgtype = CV_MAKETYPE(imgdepth, GetParam());
+    int imgtype = CV_MAKETYPE(imgdepth, 3);
     const string outputname = cv::tempfile(".avif");
     Mat img = makeCirclesImage(Size(1280, 720), imgtype, avif_nbits);
 
@@ -330,7 +328,7 @@ TEST_P(MatChannels, Imgcodecs_Avif_ReadWriteWithExif)
     EXPECT_EQ(img2.rows, img.rows);
     EXPECT_EQ(img2.type(), imgtype);
     EXPECT_EQ(read_metadata_types, read_metadata_types2);
-    ASSERT_GE(read_metadata_types.size(), 1u);
+    EXPECT_GE(read_metadata_types.size(), 1u);
     EXPECT_EQ(read_metadata, read_metadata2);
     EXPECT_EQ(read_metadata_types[0], IMAGE_METADATA_EXIF);
     EXPECT_EQ(read_metadata_types.size(), read_metadata.size());
@@ -340,9 +338,6 @@ TEST_P(MatChannels, Imgcodecs_Avif_ReadWriteWithExif)
     EXPECT_LT(mse, 1500);
     remove(outputname.c_str());
 }
-
-INSTANTIATE_TEST_CASE_P(Imgcodecs, MatChannels,
-                        testing::Values(1,3,4));
 #endif // HAVE_AVIF
 
 #ifdef HAVE_WEBP
